@@ -12,6 +12,6 @@ public class Product {
 	private Agency agency;
 	private int points;
 	private String description;
-	private List<Reviews> listReviews;
+	private List<Review> listReviews;
 
 }

@@ -2,59 +2,66 @@ package it.unicam.cs.ids.shoppingsite.shoppingservices;
 
 import it.unicam.cs.ids.shoppingsite.users.Customer;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
 
 	private List<Product> listProduct;
 	private double totalPrice;
-	private LinkedList<Product> listQuantity;
+	private double totalPoints;
+
+	public ShoppingCart() {
+		this.listProduct = new ArrayList<>();
+		this.totalPrice = 0;
+		this.totalPoints = 0;
+	}
 
 	/**
 	 * 
 	 * @param product
 	 * @param quantity
 	 */
-	public void addProductAndQuantity(Product product, int quantity) {
-		// TODO - implement ShoppingCart.addProductAndQuantity
-		throw new UnsupportedOperationException();
+	public void addProductQuantity(Product product, int quantity) {
+		listProduct.add(product);
+		totalImport();
+		sumPoints();
 	}
 
 	/**
-	 * 
-	 * @param customer
+	 *
+	 * @param product
 	 */
-	public void quantityCheck(Customer customer) {
-		// TODO - implement ShoppingCart.quantityCheck
-		throw new UnsupportedOperationException();
+	public void removeProductQuantity(Product product, int quantity) {
+		totalImport();
+		sumPoints();
 	}
 
 	/**
-	 * 
-	 * @param customer
+	 *
 	 */
-	public void totalImport(Customer customer) {
-		// TODO - implement ShoppingCart.totalImport
-		throw new UnsupportedOperationException();
+	public boolean checkQuantity() {
+		//TODO
+		return false;
+	}
+
+	/**
+	 *
+	 */
+	public void totalImport() {
+		for(Product p : listProduct) {
+			//totalPrice += p.getPrice();
+		}
+	}
+
+	public void sumPoints() {
+		for(Product p : listProduct) {
+			//totalPoints += p.getPoints();
+		};
 	}
 
 	public void printProductsList() {
 		// TODO - implement ShoppingCart.printProductsList
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param product
-	 */
-	public void removeProduct(Product product) {
-		// TODO - implement ShoppingCart.removeProduct
-		throw new UnsupportedOperationException();
-	}
-
-	public void sumPoints() {
-		// TODO - implement ShoppingCart.sumPoints
 		throw new UnsupportedOperationException();
 	}
 

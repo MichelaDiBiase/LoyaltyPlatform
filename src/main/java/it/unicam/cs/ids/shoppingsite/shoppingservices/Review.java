@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.shoppingsite.shoppingservices;
 
-public class Reviews {
+public class Review {
 
 	private String assessment;
 

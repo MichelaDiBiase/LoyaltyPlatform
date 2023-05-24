@@ -1,21 +1,40 @@
 package it.unicam.cs.ids.shoppingsite.users;
 
 import it.unicam.cs.ids.shoppingsite.mailbox.Mailbox;
+import it.unicam.cs.ids.shoppingsite.models.ICustomer;
+import it.unicam.cs.ids.shoppingsite.models.RolesType;
 import it.unicam.cs.ids.shoppingsite.premiumprogram.FidelityCard;
+import it.unicam.cs.ids.shoppingsite.shoppingservices.Catalog;
 import it.unicam.cs.ids.shoppingsite.shoppingservices.Product;
+import it.unicam.cs.ids.shoppingsite.shoppingservices.ShoppingCart;
 
-public abstract class Customer {
+import javax.management.relation.Role;
+
+public class Customer implements ICustomer {
 
 	private String name;
 	private String surname;
 	private String email;
-	private FidelityCard fidelityCard;
-	private Mailbox MailBox;
 	private String gender;
+	private ShoppingCart shoppingCart;
+	private Mailbox mailBox;
+	private RolesType role;
 
-	public void editProfile() {
-		// TODO - implement Customer.editProfile
-		throw new UnsupportedOperationException();
+	public Customer(String name, String surname, String email, String gender) {
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.gender = gender;
+		this.shoppingCart = new ShoppingCart();
+		this.mailBox = new Mailbox();
+		this.role = RolesType.basic;
+	}
+
+	public void editProfile(String name, String surname, String email, String gender) {
+		setName(name);
+		setSurname(surname);
+		setEmail(email);
+		setGender(gender);
 	}
 
 	public void buyProduct() {
@@ -23,24 +42,56 @@ public abstract class Customer {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param product
-	 * @param quantity
-	 */
 	public void addToShoppingCart(Product product, int quantity) {
-		// TODO - implement Customer.addToShoppingCart
-		throw new UnsupportedOperationException();
+		shoppingCart.addProductQuantity(product, quantity);
 	}
 
-	/**
-	 * 
-	 * @param product
-	 * @param quantity
-	 */
 	public void removeFromShoppingCart(Product product, int quantity) {
-		// TODO - implement Customer.removeFromShoppingCart
-		throw new UnsupportedOperationException();
+		shoppingCart.removeProductQuantity(product, quantity);
+	}
+
+	public void upgradeRole(RolesType role) {
+		this.role = role;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public Mailbox getMailBox() {
+		return mailBox;
+	}
+
+	public RolesType getRole() {
+		return role;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 }

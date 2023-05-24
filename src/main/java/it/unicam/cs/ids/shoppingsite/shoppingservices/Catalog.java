@@ -5,14 +5,13 @@ import java.util.List;
 public class Catalog {
 
 	private List<Product> listProduct;
-	private List<Reviews> listReviews;
-	private int quantity;
+	private List<Review> listReviews;
 
 	/**
 	 * 
 	 * @param product
 	 */
-	public void addProduct(Product product) {
+	public void addProductQuantity(Product product, int quantity) {
 		// TODO - implement Catalog.addProduct
 		throw new UnsupportedOperationException();
 	}
@@ -21,16 +20,16 @@ public class Catalog {
 	 * 
 	 * @param product
 	 */
-	public void removeProduct(Product product) {
+	public void removeProductQuantity(Product product, int quantity) {
 		// TODO - implement Catalog.removeProduct
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * 
-	 * @param reviews
+	 * @param review
 	 */
-	public void addReviews(Reviews reviews) {
+	public void addReviews(Review review) {
 		// TODO - implement Catalog.addReviews
 		throw new UnsupportedOperationException();
 	}
