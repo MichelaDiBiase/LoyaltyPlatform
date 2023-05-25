@@ -16,44 +16,42 @@ public class Catalog {
      * @param product
      */
     public void addProductQuantity(Product product, int quantity) {
-        // TODO - implement Catalog.addProduct
         listProduct.add(product);
-        throw new UnsupportedOperationException();
+
     }
 
     /**
      * @param product
      */
     public void removeProductQuantity(Product product, int quantity) {
-        // TODO - implement Catalog.removeProduct
         listProduct.remove(product);
-        throw new UnsupportedOperationException();
     }
 
     /**
      * @param review
      */
-    public void addReviews(Review review) {
-        // TODO - implement Catalog.addReviews
+    public void addReviews(Review review) {//TODO add ptoduct?
         listReviews.add(review);
-        throw new UnsupportedOperationException();
     }
 
     /**
      * @param nameProduct
      */
     public Product searchProduct(String nameProduct) {
-        // TODO - implement Catalog.searchProduct
-        listProduct.lastIndexOf(nameProduct);
-        throw new UnsupportedOperationException();
+
+        for (Product product : listProduct){
+            if(nameProduct.equals(product.getName())){
+                return product;
+            }
+
+        }
+        return null;
     }
 
     public void printProductsList() {
-        // TODO - implement Catalog.printProductsList
         for (Product product : listProduct) {
             System.out.println(product);
         }
-        throw new UnsupportedOperationException();
     }
 
 }
