@@ -4,52 +4,56 @@ import java.util.List;
 
 public class Catalog {
 
-	private List<Product> listProduct;
-	private List<Review> listReviews;
+    private List<Product> listProduct;
+    private List<Review> listReviews;
 
-	/**
-	 * 
-	 * @param product
-	 */
-	public void addProductQuantity(Product product, int quantity) {
-		// TODO - implement Catalog.addProduct
-		listProduct.add(product);
-		throw new UnsupportedOperationException();
-	}
+    public Catalog(List<Product> listProduct,List<Review> listReviews){
+        this.listProduct=listProduct;
+        this.listReviews=listReviews;
+    }
 
-	/**
-	 * 
-	 * @param product
-	 */
-	public void removeProductQuantity(Product product, int quantity) {
-		// TODO - implement Catalog.removeProduct
-		listProduct.remove(product);
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * @param product
+     */
+    public void addProductQuantity(Product product, int quantity) {
+        // TODO - implement Catalog.addProduct
+        listProduct.add(product);
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * 
-	 * @param review
-	 */
-	public void addReviews(Review review) {
-		// TODO - implement Catalog.addReviews
-		listReviews.add(review);
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * @param product
+     */
+    public void removeProductQuantity(Product product, int quantity) {
+        // TODO - implement Catalog.removeProduct
+        listProduct.remove(product);
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * 
-	 * @param nameProduct
-	 */
-	public Product searchProduct(String nameProduct) {
-		// TODO - implement Catalog.searchProduct
-		listProduct.lastIndexOf(nameProduct);
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * @param review
+     */
+    public void addReviews(Review review) {
+        // TODO - implement Catalog.addReviews
+        listReviews.add(review);
+        throw new UnsupportedOperationException();
+    }
 
-	public void printProductsList() {
-		// TODO - implement Catalog.printProductsList
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * @param nameProduct
+     */
+    public Product searchProduct(String nameProduct) {
+        // TODO - implement Catalog.searchProduct
+        listProduct.lastIndexOf(nameProduct);
+        throw new UnsupportedOperationException();
+    }
+
+    public void printProductsList() {
+        // TODO - implement Catalog.printProductsList
+        for (Product product : listProduct) {
+            System.out.println(product);
+        }
+        throw new UnsupportedOperationException();
+    }
 
 }
