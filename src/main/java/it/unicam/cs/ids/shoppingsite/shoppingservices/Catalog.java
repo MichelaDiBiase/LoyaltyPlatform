@@ -13,6 +13,7 @@ public class Catalog {
 	 */
 	public void addProductQuantity(Product product, int quantity) {
 		// TODO - implement Catalog.addProduct
+		listProduct.add(product);
 		throw new UnsupportedOperationException();
 	}
 
@@ -22,6 +23,7 @@ public class Catalog {
 	 */
 	public void removeProductQuantity(Product product, int quantity) {
 		// TODO - implement Catalog.removeProduct
+		listProduct.remove(product);
 		throw new UnsupportedOperationException();
 	}
 
@@ -31,6 +33,7 @@ public class Catalog {
 	 */
 	public void addReviews(Review review) {
 		// TODO - implement Catalog.addReviews
+		listReviews.add(review);
 		throw new UnsupportedOperationException();
 	}
 
@@ -40,6 +43,7 @@ public class Catalog {
 	 */
 	public Product searchProduct(String nameProduct) {
 		// TODO - implement Catalog.searchProduct
+		listProduct.lastIndexOf(nameProduct);
 		throw new UnsupportedOperationException();
 	}
 

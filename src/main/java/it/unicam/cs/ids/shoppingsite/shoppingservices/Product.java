@@ -14,4 +14,14 @@ public class Product {
 	private String description;
 	private List<Review> listReviews;
 
+	public Product(String name,double price,Agency agency,int points,String description,List<Review> listReviews){
+		this.name=name;
+		this.price=price;
+		this.agency=agency;
+		this.points=points;
+		this.description=description;
+		this.listReviews=listReviews;
+
+	}
+
 }
