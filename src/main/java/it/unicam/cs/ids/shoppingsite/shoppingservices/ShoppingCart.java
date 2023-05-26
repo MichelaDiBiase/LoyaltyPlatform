@@ -1,7 +1,5 @@
 package it.unicam.cs.ids.shoppingsite.shoppingservices;
 
-import it.unicam.cs.ids.shoppingsite.users.Customer;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,4 +63,23 @@ public class ShoppingCart {
 		throw new UnsupportedOperationException();
 	}
 
+	public List<Product> getListProduct() {
+		return listProduct;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public double getTotalPoints() {
+		return totalPoints;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public void setTotalPoints(double totalPoints) {
+		this.totalPoints = totalPoints;
+	}
 }
