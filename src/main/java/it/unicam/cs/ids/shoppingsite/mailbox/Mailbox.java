@@ -1,17 +1,22 @@
 package it.unicam.cs.ids.shoppingsite.mailbox;
 
+import java.util.List;
+
 public class Mailbox {
 
-	private Mail listMail;
+	private List<Mail> listMail;
 
-	public void sendAdvertising() {
-		// TODO - implement Mailbox.sendAdvertising
-		throw new UnsupportedOperationException();
+	public Mailbox (List<Mail> listMail ){
+		this.listMail=listMail;
 	}
 
-	public void sendEmail() {
-		// TODO - implement Mailbox.sendEmail
-		throw new UnsupportedOperationException();
+	public void sendAdvertising(String recipient,String textAdvertising) {
+		Mail writeMail=new Mail(recipient,textAdvertising);
+
+	}
+
+	public void sendEmail(String recipient,String text) {
+		Mail writeMail=new Mail(recipient,text);
 	}
 
 }

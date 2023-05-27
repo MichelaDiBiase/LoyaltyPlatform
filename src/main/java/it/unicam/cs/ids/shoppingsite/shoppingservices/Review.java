@@ -4,14 +4,17 @@ public class Review {
 
 	private String assessment;
 
+	public Review (String assessment){
+		this.assessment=assessment;
+	}
+
 	/**
 	 * 
 	 * @param product
 	 * @param text
 	 */
 	public void writeReviews(Product product, String text) {
-		// TODO - implement Reviews.writeReviews
-		throw new UnsupportedOperationException();
+		Review review=new Review(text);
 	}
 
 	public void operation() {
