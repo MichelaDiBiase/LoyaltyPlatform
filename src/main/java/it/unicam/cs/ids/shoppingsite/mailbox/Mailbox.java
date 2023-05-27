@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.shoppingsite.mailbox;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mailbox {
@@ -7,7 +8,8 @@ public class Mailbox {
 	private List<Mail> listMail;
 
 	public Mailbox (){
-		this.listMail=listMail;
+		this.listMail=new ArrayList<>();
+
 	}
 
 	public void sendAdvertising(String recipient,String textAdvertising) {
