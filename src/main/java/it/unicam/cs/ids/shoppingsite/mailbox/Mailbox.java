@@ -6,7 +6,7 @@ public class Mailbox {
 
 	private List<Mail> listMail;
 
-	public Mailbox (List<Mail> listMail ){
+	public Mailbox (){
 		this.listMail=listMail;
 	}
 
