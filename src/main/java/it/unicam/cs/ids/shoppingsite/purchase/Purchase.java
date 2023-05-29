@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.shoppingsite.purchase;
 
 import it.unicam.cs.ids.shoppingsite.shoppingservices.ShoppingCart;
-import it.unicam.cs.ids.shoppingsite.users.Customer;
 
 import java.sql.Date;
 
@@ -21,7 +20,7 @@ public class Purchase {
 	 *
 	 */
 	public void sendInvoice() {
-		Invoice invoice = new Invoice(date, shoppingCart.getListProduct(), shoppingCart.getTotalPrice());
+		Invoice invoice = new Invoice(date, shoppingCart.getListOfProduct(), shoppingCart.getTotalPrice());
 		//TODO Mailbox or Mail methods needed
 	}
 

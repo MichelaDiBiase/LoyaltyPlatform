@@ -5,12 +5,12 @@ import java.util.List;
 
 public class ShoppingCart {
 
-	private List<Product> listProduct;
+	private List<Product> listOfProduct;
 	private double totalPrice;
 	private double totalPoints;
 
 	public ShoppingCart() {
-		this.listProduct = new ArrayList<>();
+		this.listOfProduct = new ArrayList<>();
 		this.totalPrice = 0;
 		this.totalPoints = 0;
 	}
@@ -21,7 +21,7 @@ public class ShoppingCart {
 	 * @param quantity
 	 */
 	public void addProductQuantity(Product product, int quantity) {
-		listProduct.add(product);
+		listOfProduct.add(product);
 		totalImport();
 		sumPoints();
 	}
@@ -38,22 +38,14 @@ public class ShoppingCart {
 	/**
 	 *
 	 */
-	public boolean checkQuantity() {
-		//TODO
-		return false;
-	}
-
-	/**
-	 *
-	 */
 	public void totalImport() {
-		for(Product p : listProduct) {
+		for(Product p : listOfProduct) {
 			//totalPrice += p.getPrice();
 		}
 	}
 
 	public void sumPoints() {
-		for(Product p : listProduct) {
+		for(Product p : listOfProduct) {
 			//totalPoints += p.getPoints();
 		};
 	}
@@ -63,8 +55,8 @@ public class ShoppingCart {
 		throw new UnsupportedOperationException();
 	}
 
-	public List<Product> getListProduct() {
-		return listProduct;
+	public List<Product> getListOfProduct() {
+		return listOfProduct;
 	}
 
 	public double getTotalPrice() {
