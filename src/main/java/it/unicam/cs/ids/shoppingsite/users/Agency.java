@@ -8,8 +8,7 @@ public class Agency implements IAgency {
 
 	private String name;
 	private String email;
-
-	private Mailbox mailBox;
+	private Mailbox mailbox;
 
 	public void editProfile() {
 		// TODO - implement Agency.editProfile

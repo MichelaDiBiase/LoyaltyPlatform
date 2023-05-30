@@ -34,6 +34,12 @@ public class Invoice {
         }
     }
 
+    public void removeListOfProduct(List<Product> listOfProducts) {
+        for(Product p : listOfProducts) {
+            this.listOfProducts.remove(p);
+        }
+    }
+
     public Date getDate() {
         return date;
     }
