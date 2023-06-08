@@ -1,35 +1,47 @@
 package it.unicam.cs.ids.shoppingsite.users;
 
 import it.unicam.cs.ids.shoppingsite.mailbox.Mailbox;
-import it.unicam.cs.ids.shoppingsite.models.IAgency;
+import it.unicam.cs.ids.shoppingsite.models.IUser;
 import it.unicam.cs.ids.shoppingsite.shoppingservices.Product;
+import jakarta.persistence.*;
 
-public class Agency implements IAgency {
+@Entity
+@Table(name = "agencies")
+public class Agency implements IUser {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column(nullable = false)
 	private String name;
+	@Column(nullable = false)
 	private String email;
-	private Mailbox mailbox;
+	@Column(nullable = false)
+	private String password;
 
-	public void editProfile() {
-		// TODO - implement Agency.editProfile
-		throw new UnsupportedOperationException();
+	public Integer getId() {
+		return id;
 	}
 
-	public void generateProduct(String name, double price, int points, String description) {
-		// TODO - implement Agency.generateProduct
-		throw new UnsupportedOperationException();
+	public String getName() {
+		return name;
 	}
 
-	public void addProductQuantityToCatalog(Product product, int quantity) {
-		// TODO - implement Agency.addProductQuantityToCatalog
-		throw new UnsupportedOperationException();
+	@Override
+	public String getEmail() {
+		return email;
 	}
 
-	public void removeProductQuantityFromCatalog(Product product, int quantity) {
-		// TODO - implement Agency.removeProductQuantityFromCatalog
-		throw new UnsupportedOperationException();
+	@Override
+	public String getPassword() {
+		return password;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-
+	public void setName(String name) {
+		this.name = name;
+	}
 }
