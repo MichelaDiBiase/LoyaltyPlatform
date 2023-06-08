@@ -1,82 +1,78 @@
 package it.unicam.cs.ids.shoppingsite.shoppingservices;
 
 import it.unicam.cs.ids.shoppingsite.users.Agency;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.List;
 
+@Entity
+
 public class Product {
+    @Id
+    private Integer id;
+    private String name;
+    private Double price;
+    private Integer points;
+    private String description;
 
-	private int id;
-	private String name;
-	private double price;
-	private Agency agency;
-	private int points;
-	private String description;
-	private List<Review> listReviews;
+    public Product() {
 
-	public Product(String name,double price,Agency agency,int points,String description,List<Review> listReviews){
-		this.name=name;
-		this.price=price;
-		this.agency=agency;
-		this.points=points;
-		this.description=description;
-		this.listReviews=listReviews;
+    }
 
-	}
+    public Product(String name, double price, Agency agency, int points, String description, List<Review> listReviews) {
+        this.name = name;
+        this.price = price;
+        this.points = points;
+        this.description = description;
 
-	public int getId() {
-		return id;
-	}
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public Double getPrice() {
+        return price;
+    }
 
-	public Agency getAgency() {
-		return agency;
-	}
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
-	public void setAgency(Agency agency) {
-		this.agency = agency;
-	}
+    public Integer getPoints() {
+        return points;
+    }
 
-	public int getPoints() {
-		return points;
-	}
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
 
-	public void setPoints(int points) {
-		this.points = points;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public List<Review> getListReviews() {
+        return listReviews;
+    }
 
-	public List<Review> getListReviews() {
-		return listReviews;
-	}
-
-	public void setListReviews(List<Review> listReviews) {
-		this.listReviews = listReviews;
-	}
+    public void setListReviews(List<Review> listReviews) {
+        this.listReviews = listReviews;
+    }
 }
