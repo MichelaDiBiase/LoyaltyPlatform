@@ -19,6 +19,14 @@ public class Agency implements IUser {
 	@Column(nullable = false)
 	private String password;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	@Override
 	public String getEmail() {
 		return email;
@@ -27,5 +35,13 @@ public class Agency implements IUser {
 	@Override
 	public String getPassword() {
 		return password;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
