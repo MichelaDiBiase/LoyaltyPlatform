@@ -68,11 +68,4 @@ public class Product {
         this.description = description;
     }
 
-    public List<Review> getListReviews() {
-        return listReviews;
-    }
-
-    public void setListReviews(List<Review> listReviews) {
-        this.listReviews = listReviews;
-    }
 }
