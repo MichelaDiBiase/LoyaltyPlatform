@@ -28,6 +28,10 @@ public class Customer implements IUser {
 		this.gender = gender;
 	}
 
+	public Customer() {
+
+	}
+
 	/*
 	public void editProfile(String name, String surname, String email, Boolean gender) {
 		setName(name);

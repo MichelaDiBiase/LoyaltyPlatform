@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\ASUS\Desktop\ShoppingSiteIds\docs\ShoppinSite.vpp</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="shoppingsite@localhost" uuid="dc2eff1a-9eda-4fb6-b3e9-89016215a907">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/shoppingsite</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

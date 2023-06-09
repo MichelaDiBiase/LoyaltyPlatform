@@ -1,8 +1,10 @@
 package it.unicam.cs.ids.shoppingsite.shoppingservices;
 
 import it.unicam.cs.ids.shoppingsite.users.Agency;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
@@ -10,23 +12,17 @@ import java.util.List;
 
 public class Product {
     @Id
+    @Column(nullable = false,unique = true)
     private Integer id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private Double price;
+    @Column(nullable = false)
     private Integer points;
+    @Column(nullable = false)
     private String description;
 
-    public Product() {
-
-    }
-
-    public Product(String name, double price, Agency agency, int points, String description, List<Review> listReviews) {
-        this.name = name;
-        this.price = price;
-        this.points = points;
-        this.description = description;
-
-    }
 
     public Integer getId() {
         return id;
