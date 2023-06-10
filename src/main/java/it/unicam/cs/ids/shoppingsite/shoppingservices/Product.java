@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import java.util.List;
 
 @Entity
-
+@Table(name = "product")
 public class Product {
     @Id
     @Column(nullable = false,unique = true)
