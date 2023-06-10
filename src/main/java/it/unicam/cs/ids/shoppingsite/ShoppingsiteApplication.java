@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.shoppingsite.menu;
+package it.unicam.cs.ids.shoppingsite;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

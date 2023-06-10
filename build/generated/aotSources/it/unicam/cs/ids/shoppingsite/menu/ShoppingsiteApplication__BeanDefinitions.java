@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.shoppingsite.menu;
 
 import java.lang.Class;
+
+import it.unicam.cs.ids.shoppingsite.ShoppingsiteApplication;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.ConfigurationClassUtils;
