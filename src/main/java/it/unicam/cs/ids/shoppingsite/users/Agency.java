@@ -17,6 +17,13 @@ public class Agency implements IUser {
 	@Column(nullable = false)
 	private String password;
 
+	public Agency(Integer id, String name, String email, String password) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+
 	public Integer getId() {
 		return id;
 	}
