@@ -1,12 +1,9 @@
-package it.unicam.cs.ids.shoppingsite.shoppingservices;
+package it.unicam.cs.ids.shoppingsite.entity.shoppingservices;
 
-import it.unicam.cs.ids.shoppingsite.users.Agency;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
-import java.util.List;
 
 @Entity
 @Table(name = "product")

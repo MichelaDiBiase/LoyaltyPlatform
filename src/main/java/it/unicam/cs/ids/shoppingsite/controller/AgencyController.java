@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.shoppingsite.controller;
 
 import it.unicam.cs.ids.shoppingsite.service.AgencyService;
-import it.unicam.cs.ids.shoppingsite.users.Agency;
+import it.unicam.cs.ids.shoppingsite.entity.users.Agency;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

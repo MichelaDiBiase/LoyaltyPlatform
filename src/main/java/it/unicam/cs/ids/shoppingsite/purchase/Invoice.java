@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.shoppingsite.purchase;
 
-import it.unicam.cs.ids.shoppingsite.shoppingservices.Product;
+import it.unicam.cs.ids.shoppingsite.entity.shoppingservices.Product;
 
 import java.util.Date;
 import java.util.List;

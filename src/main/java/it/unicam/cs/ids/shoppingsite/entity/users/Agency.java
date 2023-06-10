@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.shoppingsite.users;
+package it.unicam.cs.ids.shoppingsite.entity.users;
 
 import it.unicam.cs.ids.shoppingsite.models.IUser;
 import jakarta.persistence.*;

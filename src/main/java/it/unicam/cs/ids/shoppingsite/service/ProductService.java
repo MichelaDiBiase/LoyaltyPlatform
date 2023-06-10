@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.shoppingsite.service;
 
 import it.unicam.cs.ids.shoppingsite.repository.ProductRepository;
-import it.unicam.cs.ids.shoppingsite.shoppingservices.Product;
+import it.unicam.cs.ids.shoppingsite.entity.shoppingservices.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

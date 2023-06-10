@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.shoppingsite.controller;
 
 import it.unicam.cs.ids.shoppingsite.service.ProductService;
-import it.unicam.cs.ids.shoppingsite.shoppingservices.Product;
+import it.unicam.cs.ids.shoppingsite.entity.shoppingservices.Product;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.shoppingsite.shoppingservices;
+package it.unicam.cs.ids.shoppingsite.entity.shoppingservices;
 
 import java.util.List;
 
