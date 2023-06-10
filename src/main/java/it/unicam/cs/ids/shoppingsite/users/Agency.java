@@ -1,8 +1,6 @@
 package it.unicam.cs.ids.shoppingsite.users;
 
-import it.unicam.cs.ids.shoppingsite.mailbox.Mailbox;
 import it.unicam.cs.ids.shoppingsite.models.IUser;
-import it.unicam.cs.ids.shoppingsite.shoppingservices.Product;
 import jakarta.persistence.*;
 
 @Entity
