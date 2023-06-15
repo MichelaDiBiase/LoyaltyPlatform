@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ShoppinSite" uuid="7bb087aa-3106-4bb8-8546-3478e105b9ef">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\ASUS\Desktop\ShoppingSiteIds\docs\ShoppinSite.vpp</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="shoppingsite@localhost" uuid="e9a4525c-b46a-4ca5-9aaa-3a18a007210a">
+    <data-source source="LOCAL" name="loyaltyplatform@localhost" uuid="cf31ce68-2b2f-4a6b-8046-b4a29ed507d6">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/shoppingsite</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/loyaltyplatform</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

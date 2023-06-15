@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shoppingsite.main.iml" filepath="$PROJECT_DIR$/.idea/modules/shoppingsite.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/it.unicam.cs.ids.loyaltyplatform.main.iml" filepath="$PROJECT_DIR$/.idea/modules/it.unicam.cs.ids.loyaltyplatform.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/loyaltyplatform.main.iml" filepath="$PROJECT_DIR$/.idea/modules/loyaltyplatform.main.iml" />
     </modules>
   </component>
 </project>
