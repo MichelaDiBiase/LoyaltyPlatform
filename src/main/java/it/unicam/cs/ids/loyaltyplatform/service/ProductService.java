@@ -25,8 +25,8 @@ public class ProductService {
 
        return this.productRepository.save(product);
     }
-    public void deleteProduct(Product product) {
+    public void deleteProduct(Integer id) {
 
-        this.productRepository.delete(product);
+        this.productRepository.findById(id).orElseThrow(NullPointerException::new);
    }
 }
