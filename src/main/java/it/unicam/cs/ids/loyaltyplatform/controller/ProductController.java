@@ -40,5 +40,12 @@ public class ProductController {
         return this.productService.getAllProduct();
     }
 
+    @PutMapping(value = "/updateProduct")
+    public void updateProduct(@RequestBody Product product) {
+
+        this.productService.updateProduct(product);
+    }
+
+
 
 }
