@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Product;
+import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,4 +30,9 @@ public class ProductService {
 
         this.productRepository.findById(id).orElseThrow(NullPointerException::new);
    }
+
+    public void updateProduct(Product product) {
+        this.productRepository.deleteById(product.getId());
+        addProduct(product);
+    }
 }
