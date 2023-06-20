@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.premiumprogram;
+package it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram;
 
 import java.util.ArrayList;
 import java.util.List;

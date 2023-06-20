@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.entity.shoppingservices;
+package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 
 import java.util.List;
 

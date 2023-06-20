@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.premiumprogram;
+package it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram;
 
 public class Coupon {
 

@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.shoppingservices.Product;
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Product;
 import it.unicam.cs.ids.loyaltyplatform.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 

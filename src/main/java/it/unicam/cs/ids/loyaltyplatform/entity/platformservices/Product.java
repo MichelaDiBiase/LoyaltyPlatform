@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.entity.shoppingservices;
+package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

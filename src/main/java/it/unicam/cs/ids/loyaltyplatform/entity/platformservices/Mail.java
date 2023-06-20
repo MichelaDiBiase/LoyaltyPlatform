@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.mailbox;
+package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 
 public class Mail {
 
