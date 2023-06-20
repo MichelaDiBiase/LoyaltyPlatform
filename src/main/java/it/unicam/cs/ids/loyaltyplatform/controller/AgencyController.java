@@ -2,7 +2,6 @@ package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.service.AgencyService;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Agency;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

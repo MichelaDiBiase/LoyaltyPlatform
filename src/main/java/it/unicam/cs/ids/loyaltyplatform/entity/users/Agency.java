@@ -2,8 +2,10 @@ package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "agencies")
 public class Agency implements IUser {
 
@@ -17,8 +19,7 @@ public class Agency implements IUser {
 	@Column(nullable = false)
 	private String password;
 
-	public Agency(Integer id, String name, String email, String password) {
-		this.id = id;
+	public Agency(String name, String email, String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
