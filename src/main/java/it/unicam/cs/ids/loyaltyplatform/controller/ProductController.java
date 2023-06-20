@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.service.ProductService;
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Product;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +20,16 @@ public class ProductController {
         return this.productService.getProductById(id);
     }
 
-    @PostMapping(value = "/addCustomer")
+    @PostMapping(value = "/addProduct")
     public void addProduct(@RequestBody Product product) {
 
         this.productService.addProduct(product);
     }
+
+    @DeleteMapping(value = "/deleteProduct")
+    public void deleteProductById(@PathVariable("id") Integer id) {
+
+        this.productService.deleteProductById(id);
+    }
+
 }
