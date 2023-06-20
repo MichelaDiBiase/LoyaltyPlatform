@@ -1,8 +1,11 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.service.ProductService;
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Product;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -31,5 +34,11 @@ public class ProductController {
 
         this.productService.deleteProductById(id);
     }
+
+    @GetMapping(value = "/getAllProduct")
+    public List<Product> getAllProduct() {
+        return this.productService.getAllProduct();
+    }
+
 
 }
