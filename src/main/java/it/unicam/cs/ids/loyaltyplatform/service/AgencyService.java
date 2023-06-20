@@ -14,16 +14,24 @@ public class AgencyService {
         this.agencyRepository = agencyRepository;
     }
 
+    public void addAgency(Agency agency) {
+        this.agencyRepository.save(agency);
+    }
+
+    public void deleteAgencyById(Integer id) {
+        this.agencyRepository.deleteById(id);
+    }
+
+    public void updateAgency(Agency agency) {
+        this.agencyRepository.deleteById(agency.getId());
+        addAgency(agency);
+    }
+
     public Agency getAgencyById(Integer id) {
         return this.agencyRepository.findById(id).orElseThrow(NullPointerException::new);
     }
+
     public List<Agency> getAllAgencies() {
         return this.agencyRepository.findAll();
-    }
-    public Agency addAgency(Agency agency) {
-        return this.agencyRepository.save(agency);
-    }
-    public void deleteAgency(Agency agency) {
-        this.agencyRepository.delete(agency);
     }
 }

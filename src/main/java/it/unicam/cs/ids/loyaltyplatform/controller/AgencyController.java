@@ -2,17 +2,33 @@ package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.service.AgencyService;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Agency;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/agency")
 public class AgencyController {
     private final AgencyService agencyService;
 
     public AgencyController(AgencyService agencyService) {
         this.agencyService = agencyService;
+    }
+
+    @PostMapping(value = "/addAgency")
+    public void addAgency(@RequestBody Agency agency) {
+        this.agencyService.addAgency(agency);
+    }
+
+    @DeleteMapping(value = "/deleteAgency")
+    public void deleteAgencyById(@PathVariable("id") Integer id) {
+        this.agencyService.deleteAgencyById(id);
+    }
+
+    @PutMapping(value = "/updateAgency")
+    public void updateAgency(@RequestBody Agency agency) {
+        this.agencyService.updateAgency(agency);
     }
 
     @GetMapping(value = "/getAgencyById/{id}")
@@ -23,17 +39,6 @@ public class AgencyController {
     @GetMapping(value = "/getAllAgency")
     public List<Agency> getAllAgencies() {
         return this.agencyService.getAllAgencies();
-    }
-
-    @PostMapping(value = "/addAgency")
-    public Agency addAgency(@RequestBody Agency agency) {
-        Agency newAgency = this.agencyService.addAgency(agency);
-        return newAgency;
-    }
-
-    @DeleteMapping(value = "/deleteAgency")
-    public void deleteAgency(@RequestBody Agency agency) {
-        this.agencyService.deleteAgency(agency);
     }
 
 }
