@@ -20,7 +20,7 @@ public class AgencyController {
         this.agencyService.addAgency(agency);
     }
 
-    @DeleteMapping(value = "/deleteAgency")
+    @DeleteMapping(value = "/deleteAgencyById")
     public void deleteAgencyById(@PathVariable("id") Integer id) {
         this.agencyService.deleteAgencyById(id);
     }
@@ -30,7 +30,7 @@ public class AgencyController {
         this.agencyService.updateAgency(agency);
     }
 
-    @GetMapping(value = "/getAgencyById/{id}")
+    @GetMapping(value = "/getAgencyById")
     public Agency getAgencyById(@PathVariable("id") Integer id) {
         return this.agencyService.getAgencyById(id);
     }

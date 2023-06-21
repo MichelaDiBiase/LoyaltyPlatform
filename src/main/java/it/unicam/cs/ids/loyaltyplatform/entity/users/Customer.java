@@ -15,7 +15,8 @@ public class Customer implements IUser {
 	private String name;
 	@Column(nullable = false)
 	private String surname;
-	@Column(nullable = false)
+	@Column(nullable = false,
+			unique = true)
 	private String email;
 	@Column(nullable = false)
 	private String password;
