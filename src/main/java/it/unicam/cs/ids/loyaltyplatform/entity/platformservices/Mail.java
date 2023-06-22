@@ -1,8 +1,20 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "mail")
 public class Mail {
 
+	@Id
+	@Column(nullable = false,unique = true)
+	private Integer id;
+	@Column(nullable = false)
 	private String recipient;
+	@Column(nullable = false)
 	private String text;
 
 	private Integer idCostumer,idAgency;
@@ -12,6 +24,10 @@ public class Mail {
 		this.text=text;
 		this.idCostumer=idCostumer;
 		this.idAgency=idAgency;
+	}
+
+	public Mail() {
+
 	}
 
 	public String getRecipient() {
