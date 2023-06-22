@@ -5,9 +5,9 @@ public class Mail {
 	private String recipient;
 	private String text;
 
-	private int idCostumer,idAgency;
+	private Integer idCostumer,idAgency;
 
-	public Mail (String recipient, String text, int idCostumer, int idAgency){
+	public Mail (String recipient, String text, Integer idCostumer, Integer idAgency){
 		this.recipient=recipient;
 		this.text=text;
 		this.idCostumer=idCostumer;
@@ -30,19 +30,19 @@ public class Mail {
 		this.text = text;
 	}
 
-	public int getIdCostumer() {
+	public Integer getIdCostumer() {
 		return idCostumer;
 	}
 
-	public void setIdCostumer(int idCostumer) {
+	public void setIdCostumer(Integer idCostumer) {
 		this.idCostumer = idCostumer;
 	}
 
-	public int getIdAgency() {
+	public Integer getIdAgency() {
 		return idAgency;
 	}
 
-	public void setIdAgency(int idAgency) {
+	public void setIdAgency (Integer idAgency) {
 		this.idAgency = idAgency;
 	}
 
