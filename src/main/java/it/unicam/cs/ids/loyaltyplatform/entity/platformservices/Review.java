@@ -5,8 +5,11 @@ public class Review {
 	private String assessment;
 	private int idCostumer,idAgency;
 
-	public Review (String assessment){
+	public Review (String assessmentint, int idCostumer, int idAgency){
+
 		this.assessment=assessment;
+		this.idCostumer=idCostumer;
+		this.idAgency=idAgency;
 	}
 
 	/**
@@ -14,8 +17,9 @@ public class Review {
 	 * @param product
 	 * @param text
 	 */
-	public void writeReviews(Product product, String text) {
-		Review review=new Review(text);
+	public void writeReviews(Product product, String text,int idCostumer, int idAgency) {
+
+		Review review=new Review(text,idCostumer,idAgency);
 	}
 
 	public void operation() {
