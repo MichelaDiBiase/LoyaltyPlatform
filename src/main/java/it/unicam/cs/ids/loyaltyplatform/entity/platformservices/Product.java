@@ -14,10 +14,6 @@ public class Product {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private Double price;
-    @Column(nullable = false)
-    private Integer points;
-    @Column(nullable = false)
     private String description;
 
 
@@ -37,21 +33,7 @@ public class Product {
         this.name = name;
     }
 
-    public Double getPrice() {
-        return price;
-    }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getPoints() {
-        return points;
-    }
-
-    public void setPoints(Integer points) {
-        this.points = points;
-    }
 
     public String getDescription() {
         return description;
