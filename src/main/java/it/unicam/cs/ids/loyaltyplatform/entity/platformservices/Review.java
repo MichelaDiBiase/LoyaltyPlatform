@@ -1,8 +1,19 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 
-public class Review {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "review")
+public class Review {
+	@Id
+	@Column(nullable = false,unique = true)
+	private Integer id;
+	@Column(nullable = false)
 	private String assessment;
+	@Column(nullable = false)
 	private Integer idCostumer,idAgency;
 
 	public Review (String assessment, Integer idCostumer, Integer idAgency){
@@ -10,6 +21,10 @@ public class Review {
 		this.assessment=assessment;
 		this.idCostumer=idCostumer;
 		this.idAgency=idAgency;
+	}
+
+	public Review() {
+
 	}
 
 
