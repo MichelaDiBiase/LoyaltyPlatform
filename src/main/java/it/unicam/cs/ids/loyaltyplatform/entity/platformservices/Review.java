@@ -12,20 +12,6 @@ public class Review {
 		this.idAgency=idAgency;
 	}
 
-	/**
-	 * 
-	 * @param product
-	 * @param text
-	 */
-	public void writeReviews(Product product, String text,int idCostumer, int idAgency) {
-
-		Review review=new Review(text,idCostumer,idAgency);
-	}
-
-	public void operation() {
-		// TODO - implement Reviews.operation
-		throw new UnsupportedOperationException();
-	}
 
 	public String getAssessment() {
 
