@@ -3,9 +3,9 @@ package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 public class Review {
 
 	private String assessment;
-	private int idCostumer,idAgency;
+	private Integer idCostumer,idAgency;
 
-	public Review (String assessmentint, int idCostumer, int idAgency){
+	public Review (String assessment, Integer idCostumer, Integer idAgency){
 
 		this.assessment=assessment;
 		this.idCostumer=idCostumer;
@@ -17,14 +17,24 @@ public class Review {
 
 		return assessment;
 	}
-	public int getIdCostumer() {
+	public Integer getIdCostumer() {
 
 		return idCostumer;
 	}
-	public int getIdAgency() {
+	public Integer getIdAgency() {
 
 		return idAgency;
 	}
 
+	public void setAssessment(String assessment) {
+		this.assessment = assessment;
+	}
 
+	public void setIdCostumer(Integer idCostumer) {
+		this.idCostumer = idCostumer;
+	}
+
+	public void setIdAgency(Integer idAgency) {
+		this.idAgency = idAgency;
+	}
 }
