@@ -23,8 +23,7 @@ public class CouponService {
     }
 
     public void updateCoupon(Coupon coupon) {
-        this.couponRepository.deleteById(coupon.getCode());
-        addCoupon(coupon);
+        this.couponRepository.saveAndFlush(coupon);
     }
 
     public Coupon getCouponById(Integer code) {

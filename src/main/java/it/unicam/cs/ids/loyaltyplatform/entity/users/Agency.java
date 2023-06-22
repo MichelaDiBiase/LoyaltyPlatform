@@ -15,8 +15,7 @@ public class Agency implements IUser {
 	@Column(nullable = false,
 			unique = true)
 	private String name;
-	@Column(nullable = false,
-			unique = true)
+	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
 	private String password;

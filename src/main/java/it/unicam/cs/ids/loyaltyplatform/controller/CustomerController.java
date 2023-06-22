@@ -30,13 +30,18 @@ public class CustomerController {
         this.customerService.updateCustomer(customer);
     }
 
+    @PostMapping(value = "/addPointsToCustomerById")
+    public void addPointsToCustomerById(@RequestBody Integer id, Integer points) {
+        this.customerService.addPointsToCustomerById(id, points);
+    }
+
     @GetMapping(value = "/getCustomerById")
     public Customer getCustomerById(@PathVariable("id") Integer id) {
         return this.customerService.getCustomerById(id);
     }
 
-    @GetMapping(value = "/getAllCustomer")
-    public List<Customer> getAllAgencies() {
+    @GetMapping(value = "/getAllCustomers")
+    public List<Customer> getAllCustomers() {
         return this.customerService.getAllCustomers();
     }
 

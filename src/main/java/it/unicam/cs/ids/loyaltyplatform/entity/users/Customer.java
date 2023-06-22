@@ -2,10 +2,12 @@ package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "customers")
 public class Customer implements IUser {
 	@Id
@@ -20,19 +22,37 @@ public class Customer implements IUser {
 	private String email;
 	@Column(nullable = false)
 	private String password;
+	private Integer points;
 	@Column(nullable = false)
 	private Boolean gender;
+	private Boolean premium;
 
-	public Customer(String name, String surname, String email, Boolean gender) {
+	public Customer(String name, String surname, String email, String password, Boolean gender) {
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
+		this.password = password;
 		this.gender = gender;
+	}
+
+	public Customer(String name, String surname, String email, String password, Boolean gender, Boolean premium) {
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+		this.points = 0;
+		this.gender = gender;
+		this.premium = premium;
+	}
+
+	public void sumPoints(Integer points) {
+		this.points += points;
 	}
 
 	public Integer getId() {
 		return id;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -51,12 +71,22 @@ public class Customer implements IUser {
 		return password;
 	}
 
+	public Integer getPoints() {
+		return points;
+	}
+
 	public Boolean getGender() {
 		return gender;
 	}
+
+	public Boolean getPremium() {
+		return premium;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -69,7 +99,19 @@ public class Customer implements IUser {
 		this.email = email;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPoints(Integer points) {
+		this.points = points;
+	}
+
 	public void setGender(Boolean gender) {
 		this.gender = gender;
+	}
+
+	public void setPremium(Boolean premium) {
+		this.premium = premium;
 	}
 }

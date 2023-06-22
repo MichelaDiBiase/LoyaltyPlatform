@@ -23,8 +23,7 @@ public class AgencyService {
     }
 
     public void updateAgency(Agency agency) {
-        this.agencyRepository.deleteById(agency.getId());
-        addAgency(agency);
+        this.agencyRepository.saveAndFlush(agency);
     }
 
     public Agency getAgencyById(Integer id) {

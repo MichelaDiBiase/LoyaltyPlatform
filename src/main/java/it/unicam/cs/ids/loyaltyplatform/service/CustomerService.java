@@ -23,8 +23,11 @@ public class CustomerService {
     }
 
     public void updateCustomer(Customer customer) {
-        this.customerRepository.deleteById(customer.getId());
-        addCustomer(customer);
+        this.customerRepository.saveAndFlush(customer);
+    }
+
+    public void addPointsToCustomerById(Integer id, Integer points) {
+        getCustomerById(id).sumPoints(points);
     }
 
     public Customer getCustomerById(Integer id) {
