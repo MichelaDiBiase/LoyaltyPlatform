@@ -1,34 +1,20 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram;
 
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 public class FidelityCard {
 
 	private int id;
 	private int points;
 	private List<Coupon> listCoupon;
 
-	public FidelityCard() {
-		this.points = 0;
-		this.listCoupon = new ArrayList<>();
-	}
-
 	public FidelityCard(int points) {
 		this.points = points;
 		this.listCoupon = new ArrayList<>();
-	}
-
-	public void addCoupon(Coupon coupon) {
-		listCoupon.add(coupon);
-	}
-
-	public void removeCoupon(Coupon coupon) {
-		for(Coupon c : listCoupon) {
-			if(coupon.getCode().equals(c.getCode())) {
-				listCoupon.remove(coupon);
-			}
-		}
 	}
 
 	public int getId() {

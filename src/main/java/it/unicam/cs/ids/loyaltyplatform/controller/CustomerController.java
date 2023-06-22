@@ -20,7 +20,7 @@ public class CustomerController {
         this.customerService.addCustomer(customer);
     }
 
-    @DeleteMapping(value = "/deleteCustomer")
+    @DeleteMapping(value = "/deleteCustomerById")
     public void deleteCustomerById(@PathVariable("id") Integer id) {
         this.customerService.deleteCustomerById(id);
     }
@@ -30,7 +30,7 @@ public class CustomerController {
         this.customerService.updateCustomer(customer);
     }
 
-    @GetMapping(value = "/getCustomerById/{id}")
+    @GetMapping(value = "/getCustomerById")
     public Customer getCustomerById(@PathVariable("id") Integer id) {
         return this.customerService.getCustomerById(id);
     }

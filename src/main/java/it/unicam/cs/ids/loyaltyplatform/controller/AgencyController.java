@@ -2,7 +2,6 @@ package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.service.AgencyService;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Agency;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class AgencyController {
         this.agencyService.addAgency(agency);
     }
 
-    @DeleteMapping(value = "/deleteAgency")
+    @DeleteMapping(value = "/deleteAgencyById")
     public void deleteAgencyById(@PathVariable("id") Integer id) {
         this.agencyService.deleteAgencyById(id);
     }
@@ -31,7 +30,7 @@ public class AgencyController {
         this.agencyService.updateAgency(agency);
     }
 
-    @GetMapping(value = "/getAgencyById/{id}")
+    @GetMapping(value = "/getAgencyById")
     public Agency getAgencyById(@PathVariable("id") Integer id) {
         return this.agencyService.getAgencyById(id);
     }

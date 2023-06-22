@@ -2,8 +2,10 @@ package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "customers")
 public class Customer implements IUser {
 	@Id
@@ -13,8 +15,8 @@ public class Customer implements IUser {
 	private String name;
 	@Column(nullable = false)
 	private String surname;
-	@Id
-	@Column(nullable = false)
+	@Column(nullable = false,
+			unique = true)
 	private String email;
 	@Column(nullable = false)
 	private String password;
@@ -27,19 +29,6 @@ public class Customer implements IUser {
 		this.email = email;
 		this.gender = gender;
 	}
-
-	public Customer() {
-
-	}
-
-	/*
-	public void editProfile(String name, String surname, String email, Boolean gender) {
-		setName(name);
-		setSurname(surname);
-		setEmail(email);
-		setGender(gender);
-	}
-	 */
 
 	public Integer getId() {
 		return id;
