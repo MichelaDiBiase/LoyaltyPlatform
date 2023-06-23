@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyplatform.service;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.NoResultException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public class CustomerService {
     }
 
     public void addCustomer(Customer customer) {
+        customer.setPoints(0);
+        customer.setPremium(false);
         this.customerRepository.save(customer);
     }
 
@@ -40,7 +43,17 @@ public class CustomerService {
         if(customerRepository.findAll().parallelStream().noneMatch(x -> x.getId().equals(id))) {
             throw new EntityNotFoundException("The id(" + id + ") of the Customer does not exist");
         }
+        if(points <= 0) {
+            throw new NoResultException("The points(" + id + ") cannot be added");
+        }
         getCustomerById(id).sumPoints(points);
+        customerRepository.saveAndFlush(getCustomerById(id));
+    }
+
+    public void updateCustomerToPremium(Integer id) {
+        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
+        c.setPremium(true);;
+        this.customerRepository.saveAndFlush(c);
     }
 
     public Customer getCustomerById(Integer id) {

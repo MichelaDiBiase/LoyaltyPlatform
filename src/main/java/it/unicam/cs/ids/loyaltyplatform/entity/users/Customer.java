@@ -33,18 +33,6 @@ public class Customer implements IUser {
 		this.gender = gender;
 		this.email = email;
 		this.password = password;
-		this.points = 0;
-		this.premium = false;
-	}
-
-	public Customer(String name, String surname, String email, String password, Boolean gender, Boolean premium) {
-		this.name = name;
-		this.surname = surname;
-		this.email = email;
-		this.password = password;
-		this.points = 0;
-		this.gender = gender;
-		this.premium = premium;
 	}
 
 	public void sumPoints(Integer points) {
