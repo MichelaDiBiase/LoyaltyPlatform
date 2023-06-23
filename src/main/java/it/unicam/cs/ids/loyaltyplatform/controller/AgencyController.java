@@ -20,18 +20,18 @@ public class AgencyController {
         this.agencyService.addAgency(agency);
     }
 
-    @DeleteMapping(value = "/deleteAgencyById")
-    public void deleteAgencyById(@PathVariable("id") Integer id) {
+    @DeleteMapping(value = "/deleteAgencyById/{id}")
+    public void deleteAgencyById(@PathVariable Integer id) {
         this.agencyService.deleteAgencyById(id);
     }
 
-    @PutMapping(value = "/updateAgency")
-    public void updateAgency(@RequestBody Agency agency) {
-        this.agencyService.updateAgency(agency);
+    @PutMapping(value = "/updateAgency/{id}")
+    public void updateAgency(@PathVariable Integer id, @RequestBody Agency agency) {
+        this.agencyService.updateAgency(id, agency);
     }
 
-    @GetMapping(value = "/getAgencyById")
-    public Agency getAgencyById(@PathVariable("id") Integer id) {
+    @GetMapping(value = "/getAgencyById/{id}")
+    public Agency getAgencyById(@PathVariable Integer id) {
         return this.agencyService.getAgencyById(id);
     }
 
