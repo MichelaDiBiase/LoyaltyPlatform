@@ -17,22 +17,24 @@ public class Customer implements IUser {
 	private String name;
 	@Column(nullable = false)
 	private String surname;
-	@Column(nullable = false,
-			unique = true)
+	@Column(nullable = false)
+	private Boolean gender;
+	@Column(unique = true,
+			nullable = false)
 	private String email;
 	@Column(nullable = false)
 	private String password;
 	private Integer points;
-	@Column(nullable = false)
-	private Boolean gender;
 	private Boolean premium;
 
 	public Customer(String name, String surname, String email, String password, Boolean gender) {
 		this.name = name;
 		this.surname = surname;
+		this.gender = gender;
 		this.email = email;
 		this.password = password;
-		this.gender = gender;
+		this.points = 0;
+		this.premium = false;
 	}
 
 	public Customer(String name, String surname, String email, String password, Boolean gender, Boolean premium) {

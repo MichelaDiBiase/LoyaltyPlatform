@@ -35,10 +35,7 @@ public class AgencyService {
     }
 
     public Agency getAgencyById(Integer id) {
-        if(agencyRepository.findAll().parallelStream().noneMatch(x -> x.getId().equals(id))) {
-            throw new EntityNotFoundException("The id(" + id + ") of the Agency to get does not exist");
-        }
-        return this.agencyRepository.findById(id).orElseThrow(NullPointerException::new);
+        return this.agencyRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("The id(" + id + ") of the Agency to get does not exist"));
     }
 
     public List<Agency> getAllAgencies() {
