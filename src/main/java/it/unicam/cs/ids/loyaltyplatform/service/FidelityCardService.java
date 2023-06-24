@@ -19,10 +19,12 @@ public class FidelityCardService {
 
     public void addPremiumCustomer(FidelityCard fidelityCard) {
         this.fidelityCardRepository.save(fidelityCard);
+        this.customerService.updateCustomerToPremium(fidelityCard.getIdCustomer(), fidelityCard);
     }
 
     public void deletePremiumCustomerById(Integer idCustomer) {
-        this.fidelityCardRepository.deleteById(idCustomer);
+        this.fidelityCardRepository.deleteById(this.customerService.getCustomerById(idCustomer).getFidelityCard().getId());
+        this.customerService.downgradeCustomerAboutPremium(idCustomer);
     }
 
     public FidelityCard getFidelityCard(Integer idFidelityCard) {

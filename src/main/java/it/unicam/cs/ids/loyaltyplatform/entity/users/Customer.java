@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,9 @@ public class Customer implements IUser {
 	private String password;
 	private Integer points;
 	private Boolean premium;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idFidelityCard")
+	private FidelityCard fidelityCard;
 
 	public Customer(String name, String surname, String email, String password, Boolean gender) {
 		this.name = name;
@@ -73,6 +77,10 @@ public class Customer implements IUser {
 		return premium;
 	}
 
+	public FidelityCard getFidelityCard() {
+		return fidelityCard;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -103,5 +111,9 @@ public class Customer implements IUser {
 
 	public void setPremium(Boolean premium) {
 		this.premium = premium;
+	}
+
+	public void setFidelityCard(FidelityCard fidelityCard) {
+		this.fidelityCard = fidelityCard;
 	}
 }

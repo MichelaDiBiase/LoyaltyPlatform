@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,6 +15,23 @@ public class CustomerService {
 
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
+    }
+
+    public void updateCustomerToPremium(Integer id, FidelityCard fidelityCard) {
+        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
+        c.setPremium(true);
+        c.setFidelityCard(fidelityCard);
+        this.customerRepository.saveAndFlush(c);
+    }
+
+    public void downgradeCustomerAboutPremium(Integer id) {
+        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
+        c.setPremium(!c.getPremium());
+        if(!c.getPremium()) {
+
+            c.setFidelityCard(null);
+        }
+        this.customerRepository.saveAndFlush(c);
     }
 
     public void addCustomer(Customer customer) {
@@ -48,12 +66,6 @@ public class CustomerService {
         }
         getCustomerById(id).sumPoints(points);
         customerRepository.saveAndFlush(getCustomerById(id));
-    }
-
-    public void updateCustomerToPremium(Integer id) {
-        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
-        c.setPremium(true);;
-        this.customerRepository.saveAndFlush(c);
     }
 
     public Customer getCustomerById(Integer id) {
