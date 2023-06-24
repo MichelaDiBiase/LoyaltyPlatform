@@ -5,13 +5,12 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "premiumProgram")
+@Table(name = "fidelityCard")
 public class FidelityCard {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
 	private Integer idCustomer;
 
 	public FidelityCard(Integer idCustomer) {

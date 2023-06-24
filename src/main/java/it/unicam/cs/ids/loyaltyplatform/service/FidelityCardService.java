@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.service;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.repository.FidelityCardRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +18,20 @@ public class FidelityCardService {
         this.customerService = customerService;
     }
 
-    public void addPremiumCustomer(FidelityCard fidelityCard) {
+    public void addFidelityCardToCustomer(FidelityCard fidelityCard) {
+        if(this.fidelityCardRepository.findByIdCustomer(fidelityCard.getIdCustomer()).isPresent()) {
+            throw new EntityExistsException("Customer (id: " + fidelityCard.getIdCustomer() + ") has already a Fidelity Card");
+        }
+        if(this.customerService.getAllCustomers().parallelStream().noneMatch(x -> x.getId().equals(fidelityCard.getIdCustomer()))) {
+            throw new EntityNotFoundException("Customer (id: " + fidelityCard.getIdCustomer() + ") does not exist");
+        }
         this.fidelityCardRepository.save(fidelityCard);
         this.customerService.updateCustomerToPremium(fidelityCard.getIdCustomer(), fidelityCard);
     }
 
-    public void deletePremiumCustomerById(Integer idCustomer) {
-        this.fidelityCardRepository.deleteById(this.customerService.getCustomerById(idCustomer).getFidelityCard().getId());
-        this.customerService.downgradeCustomerAboutPremium(idCustomer);
+    public void deleteFidelityCardFromCustomerById(Integer idFidelityCard) {
+        this.customerService.downgradeCustomerAboutPremium(getFidelityCard(idFidelityCard).getIdCustomer());
+        this.fidelityCardRepository.deleteById(idFidelityCard);
     }
 
     public FidelityCard getFidelityCard(Integer idFidelityCard) {

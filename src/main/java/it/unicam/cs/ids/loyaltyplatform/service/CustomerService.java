@@ -28,7 +28,6 @@ public class CustomerService {
         Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
         c.setPremium(!c.getPremium());
         if(!c.getPremium()) {
-
             c.setFidelityCard(null);
         }
         this.customerRepository.saveAndFlush(c);

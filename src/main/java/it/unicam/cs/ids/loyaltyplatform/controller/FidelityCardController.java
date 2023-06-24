@@ -16,18 +16,18 @@ public class FidelityCardController {
         this.fidelityCardService = fidelityCardService;
     }
 
-    @PostMapping(value = "/addPremiumCustomer")
-    public void addPremiumCustomer(@RequestBody FidelityCard fidelityCard) {
-        this.fidelityCardService.addPremiumCustomer(fidelityCard);
+    @PostMapping(value = "/addFidelityCardToCustomer")
+    public void addFidelityCardToCustomer(@RequestBody FidelityCard fidelityCard) {
+        this.fidelityCardService.addFidelityCardToCustomer(fidelityCard);
     }
 
-    @DeleteMapping(value = "/deleteCustomerById/{idCustomer}")
-    public void deletePremiumCustomerById(@PathVariable Integer idCustomer) {
-        this.fidelityCardService.deletePremiumCustomerById(idCustomer);
+    @DeleteMapping(value = "/deleteFidelityCardFromCustomerById/{idCustomer}")
+    public void deleteFidelityCardFromCustomerById(@PathVariable Integer idCustomer) {
+        this.fidelityCardService.deleteFidelityCardFromCustomerById(idCustomer);
     }
 
-    @GetMapping(value = "/getCustomerById/{idFidelityCard}")
-    public FidelityCard getCustomerByFidelityCardId(@PathVariable Integer idFidelityCard) {
+    @GetMapping(value = "/getFidelityCard/{idFidelityCard}")
+    public FidelityCard getFidelityCard(@PathVariable Integer idFidelityCard) {
         return this.fidelityCardService.getFidelityCard(idFidelityCard);
     }
 
