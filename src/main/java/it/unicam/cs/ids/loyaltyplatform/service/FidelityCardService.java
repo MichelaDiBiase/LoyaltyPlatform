@@ -1,10 +1,9 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
-import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.repository.FidelityCardRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class FidelityCardService {
     private final FidelityCardRepository fidelityCardRepository;
     private final CustomerService customerService;
 
-    public FidelityCardService(FidelityCardRepository fidelityCardRepository, CustomerService customerService) {
+    public FidelityCardService(FidelityCardRepository fidelityCardRepository, CustomerService customerService, AgencyService agencyService) {
         this.fidelityCardRepository = fidelityCardRepository;
         this.customerService = customerService;
     }
@@ -26,13 +25,16 @@ public class FidelityCardService {
         this.fidelityCardRepository.deleteById(idCustomer);
     }
 
-    public FidelityCard getCustomerByFidelityCardId(Integer idFidelityCard) {
-        return this.fidelityCardRepository.findById(idFidelityCard).orElseThrow(NullPointerException::new);
+    public FidelityCard getFidelityCard(Integer idFidelityCard) {
+        return this.fidelityCardRepository.findById(idFidelityCard).orElseThrow(() -> new EntityNotFoundException("The id(" + idFidelityCard + ") of the Fidelity Card to get does not exist"));
+    }
+
+    public FidelityCard getFidelityCardByIdCustomer(Integer idCustomer) {
+        return this.fidelityCardRepository.findByIdCustomer(this.customerService.getCustomerById(idCustomer).getId()).orElseThrow(() -> new EntityNotFoundException("The Customer (id: " + idCustomer + ") has no Fidelity Card"));
     }
 
     public List<FidelityCard> getAllCustomersWithFidelityCard() {
         return this.fidelityCardRepository.findAll();
     }
-
 
 }

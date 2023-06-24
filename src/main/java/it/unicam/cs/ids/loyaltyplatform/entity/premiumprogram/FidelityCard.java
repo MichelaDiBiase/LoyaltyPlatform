@@ -3,9 +3,6 @@ package it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @NoArgsConstructor
 @Table(name = "premiumProgram")
@@ -14,14 +11,11 @@ public class FidelityCard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(nullable = false)
-	private Integer idCustomer;
-	@Column(nullable = false)
-	private Integer idAgency;
 
-	public FidelityCard(Integer idCustomer, Integer idAgency) {
+	private Integer idCustomer;
+
+	public FidelityCard(Integer idCustomer) {
 		this.idCustomer = idCustomer;
-		this.idAgency = idAgency;
 	}
 
 	public Integer getId() {
@@ -32,10 +26,6 @@ public class FidelityCard {
 		return idCustomer;
 	}
 
-	public Integer getIdAgency() {
-		return idAgency;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -44,7 +34,4 @@ public class FidelityCard {
 		this.idCustomer = idCustomer;
 	}
 
-	public void setIdAgency(Integer idAgency) {
-		this.idAgency = idAgency;
-	}
 }
