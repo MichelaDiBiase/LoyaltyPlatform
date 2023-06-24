@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
+@Table(name = "coupons")
 public class Coupon {
 
 	@Id
