@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.service;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Mail;
 import it.unicam.cs.ids.loyaltyplatform.repository.MailRepository;
+import jakarta.persistence.EntityExistsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public class MailService {
         this.mailRepository = mailRepository;
     }
     public void addMail(Mail mail) {
+        if(this.mailRepository. findByMail(mail.getRecipient()).isPresent()) {
+            throw new EntityExistsException("Mail " + mail.getRecipient() + "it already exists");
+        }
 
          this.mailRepository.save(mail);
     }
