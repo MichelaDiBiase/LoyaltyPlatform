@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.service;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Product;
 import it.unicam.cs.ids.loyaltyplatform.repository.ProductRepository;
+import jakarta.persistence.EntityExistsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public class ProductService {
         return this.productRepository.findAll();
     }
     public Product addProduct(Product product) {
+        if(this.productRepository. findByName(product.getName()).isPresent()) {
+            throw new EntityExistsException("Name " + product.getName() + "it already exists");
+        }
 
        return this.productRepository.save(product);
     }
