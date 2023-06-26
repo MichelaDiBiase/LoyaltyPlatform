@@ -20,23 +20,23 @@ public class CustomerController {
         this.customerService.addCustomer(customer);
     }
 
-    @DeleteMapping(value = "/deleteCustomerById")
-    public void deleteCustomerById(@PathVariable("id") Integer id) {
+    @DeleteMapping(value = "/deleteCustomerById/{id}")
+    public void deleteCustomerById(@PathVariable Integer id) {
         this.customerService.deleteCustomerById(id);
     }
 
     @PutMapping(value = "/updateCustomer")
-    public void updateCustomer(@RequestBody Customer customer) {
-        this.customerService.updateCustomer(customer);
+    public void updateCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
+        this.customerService.updateCustomer(id, customer);
     }
 
-    @PostMapping(value = "/addPointsToCustomerById")
-    public void addPointsToCustomerById(@RequestBody Integer id, Integer points) {
+    @PutMapping(value = "/addPointsToCustomerById/{id}/points/{points}")
+    public void addPointsToCustomerById(@PathVariable Integer id, @PathVariable Integer points) {
         this.customerService.addPointsToCustomerById(id, points);
     }
 
-    @GetMapping(value = "/getCustomerById")
-    public Customer getCustomerById(@PathVariable("id") Integer id) {
+    @GetMapping(value = "/getCustomerById/{id}")
+    public Customer getCustomerById(@PathVariable Integer id) {
         return this.customerService.getCustomerById(id);
     }
 

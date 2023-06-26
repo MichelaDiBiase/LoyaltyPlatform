@@ -11,19 +11,24 @@ public class Coupon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer code;
-	@Column(nullable = false)
 	private Integer points;
 	@Column(nullable = false)
 	private Integer discount;
-	@Column(nullable = false)
 	private Integer idCustomer;
 	@Column(nullable = false)
 	private Integer idAgency;
 
-	public Coupon(Integer code, Integer points, Integer discount) {
+	public Coupon(Integer code, Integer points, Integer discount, Integer idAgency) {
 		this.code = code;
 		this.points = points;
 		this.discount = discount;
+		this.idAgency = idAgency;
+	}
+
+	public Coupon(Integer code, Integer discount, Integer idAgency) {
+		this.code = code;
+		this.discount = discount;
+		this.idAgency = idAgency;
 	}
 
 	public Integer getCode() {

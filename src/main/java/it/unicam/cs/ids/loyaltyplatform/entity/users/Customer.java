@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,32 +18,25 @@ public class Customer implements IUser {
 	private String name;
 	@Column(nullable = false)
 	private String surname;
-	@Column(nullable = false,
-			unique = true)
+	@Column(nullable = false)
+	private Boolean gender;
+	@Column(unique = true,
+			nullable = false)
 	private String email;
 	@Column(nullable = false)
 	private String password;
 	private Integer points;
-	@Column(nullable = false)
-	private Boolean gender;
 	private Boolean premium;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idFidelityCard")
+	private FidelityCard fidelityCard;
 
 	public Customer(String name, String surname, String email, String password, Boolean gender) {
 		this.name = name;
 		this.surname = surname;
+		this.gender = gender;
 		this.email = email;
 		this.password = password;
-		this.gender = gender;
-	}
-
-	public Customer(String name, String surname, String email, String password, Boolean gender, Boolean premium) {
-		this.name = name;
-		this.surname = surname;
-		this.email = email;
-		this.password = password;
-		this.points = 0;
-		this.gender = gender;
-		this.premium = premium;
 	}
 
 	public void sumPoints(Integer points) {
@@ -83,6 +77,10 @@ public class Customer implements IUser {
 		return premium;
 	}
 
+	public FidelityCard getFidelityCard() {
+		return fidelityCard;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -113,5 +111,9 @@ public class Customer implements IUser {
 
 	public void setPremium(Boolean premium) {
 		this.premium = premium;
+	}
+
+	public void setFidelityCard(FidelityCard fidelityCard) {
+		this.fidelityCard = fidelityCard;
 	}
 }

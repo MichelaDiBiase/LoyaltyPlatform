@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
-import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.service.CustomerService;
 import it.unicam.cs.ids.loyaltyplatform.service.FidelityCardService;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +16,24 @@ public class FidelityCardController {
         this.fidelityCardService = fidelityCardService;
     }
 
-    @PostMapping(value = "/addPremiumCustomer")
-    public void addPremiumCustomer(@RequestBody FidelityCard fidelityCard) {
-        this.fidelityCardService.addPremiumCustomer(fidelityCard);
+    @PostMapping(value = "/addFidelityCardToCustomer")
+    public void addFidelityCardToCustomer(@RequestBody FidelityCard fidelityCard) {
+        this.fidelityCardService.addFidelityCardToCustomer(fidelityCard);
     }
 
-    @DeleteMapping(value = "/deleteCustomerById")
-    public void deletePremiumCustomerById(@PathVariable("id") Integer idCustomer) {
-        this.fidelityCardService.deletePremiumCustomerById(idCustomer);
+    @DeleteMapping(value = "/deleteFidelityCardFromCustomerById/{idCustomer}")
+    public void deleteFidelityCardFromCustomerById(@PathVariable Integer idCustomer) {
+        this.fidelityCardService.deleteFidelityCardFromCustomerById(idCustomer);
     }
 
-    @GetMapping(value = "/getCustomerById")
-    public FidelityCard getCustomerByFidelityCardId(@PathVariable("id") Integer idFidelityCard) {
-        return this.fidelityCardService.getCustomerByFidelityCardId(idFidelityCard);
+    @GetMapping(value = "/getFidelityCard/{idFidelityCard}")
+    public FidelityCard getFidelityCard(@PathVariable Integer idFidelityCard) {
+        return this.fidelityCardService.getFidelityCard(idFidelityCard);
+    }
+
+    @GetMapping(value = "/getFidelityCardByIdCustomer/{idCustomer}")
+    public FidelityCard getFidelityCardByIdCustomer(@PathVariable Integer idCustomer) {
+        return this.fidelityCardService.getFidelityCardByIdCustomer(idCustomer);
     }
 
     @GetMapping(value = "/getAllCustomersWithFidelityCard")

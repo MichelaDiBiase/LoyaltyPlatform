@@ -18,34 +18,33 @@ public class CouponController {
     }
 
     @PostMapping(value = "/addCoupon")
-    public void addCoupon(Coupon coupon) {
+    public void addCoupon(@RequestBody Coupon coupon) {
         this.couponService.addCoupon(coupon);
     }
 
-    @DeleteMapping(value = "/deleteCouponById")
-    public void deleteCouponById(Integer code) {
-        this.couponService.deleteCouponById(code);
+    @DeleteMapping(value = "/deleteCouponByCode/{code}")
+    public void deleteCouponByCode(@PathVariable Integer code) {
+        this.couponService.deleteCouponByCode(code);
     }
 
-    @PutMapping(value = "/updateAgency")
-    public void updateCoupon(Coupon coupon) {
-        this.couponService.deleteCouponById(coupon.getCode());
-        addCoupon(coupon);
+    @PutMapping(value = "/updateAgency/{code}")
+    public void updateCoupon(@PathVariable Integer code, @RequestBody Coupon coupon) {
+        this.couponService.updateCoupon(code, coupon);
     }
 
-    @GetMapping(value = "/getCouponById")
-    public Coupon getCouponById(Integer code) {
-        return this.couponService.getCouponById(code);
+    @GetMapping(value = "/getCouponByCode/{code}")
+    public Coupon getCouponByCode(@PathVariable Integer code) {
+        return this.couponService.getCouponByCode(code);
     }
 
-    @GetMapping(value = "/getCouponsByCustomerId")
-    public List<Coupon> getCouponsByCustomerId(Integer idCustomer) {
-        return this.couponService.getCouponsByCustomerId(idCustomer);
+    @GetMapping(value = "/getCouponsByIdCustomer/{idCustomer}")
+    public List<Coupon> getCouponsByIdCustomer(@PathVariable Integer idCustomer) {
+        return this.couponService.getCouponsByIdCustomer(idCustomer);
     }
 
-    @GetMapping(value = "/getCouponsByAgencyId")
-    public List<Coupon> getCouponsByAgencyId(Integer idAgency) {
-        return this.couponService.getCouponsByAgencyId(idAgency);
+    @GetMapping(value = "/getCouponsByIdAgency/{idAgency}")
+    public List<Coupon> getCouponsByIdAgency(@PathVariable Integer idAgency) {
+        return this.couponService.getCouponsByIdAgency(idAgency);
     }
 
     @GetMapping(value = "/getAllCoupons")
