@@ -44,6 +44,13 @@ public class MailService {
     }
 
     public List<Mail> getMailByCustomerIdAndAgencyId(Integer idCustomer, Integer idAgency) {
+        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(idAgency))) {
+            throw new EntityNotFoundException("The id(" + idAgency + ") of the id does not exist");
+        }
+
+        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(idAgency))) {
+            throw new EntityNotFoundException("The id(" + idAgency + ") of the id does not exist");
+        }
         return this.mailRepository.findAll().parallelStream().filter(x -> x.getIdCostumer() == idCustomer && x.getIdAgency() == idAgency).toList();
     }
 
