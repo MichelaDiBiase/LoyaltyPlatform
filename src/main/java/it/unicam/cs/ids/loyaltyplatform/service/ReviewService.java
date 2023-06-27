@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyplatform.service;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Review;
 import it.unicam.cs.ids.loyaltyplatform.repository.ReviewRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,11 +31,16 @@ public class ReviewService {
     }
 
     public List<Review> getReviewByCustomerId(Integer idCustomer) {
+        if(reviewRepository.findAll().parallelStream().noneMatch(x -> x.getIdCostumer().equals(idCustomer))) {
+            throw new EntityNotFoundException("The id(" + idCustomer + ") of the id does not exist");
+        }
         return this.reviewRepository.findAll().parallelStream().filter(x -> x.getIdCostumer() == (idCustomer)).toList();
 
     }
 
     public List<Review> getReviewByAgencyId(Integer idAgency) {
+
+
         return this.reviewRepository.findAll().parallelStream().filter(x -> x.getIdAgency() == (idAgency)).toList();
     }
 
