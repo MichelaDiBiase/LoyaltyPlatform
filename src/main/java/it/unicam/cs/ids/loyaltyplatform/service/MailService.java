@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyplatform.service;
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Mail;
 import it.unicam.cs.ids.loyaltyplatform.repository.MailRepository;
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,9 @@ public class MailService {
          this.mailRepository.save(mail);
     }
     public void deleteMail(Mail mail) {
+        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getClass().equals(mail))) {
+            throw new EntityNotFoundException("The (" + mail + ") of the mail to delete does not exist");
+        }
 
         this.mailRepository.delete(mail);
     }
