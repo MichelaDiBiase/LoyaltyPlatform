@@ -37,7 +37,9 @@ public class MailService {
         return this.mailRepository.findAll().parallelStream().filter(x -> x.getIdCostumer()==(idCustomer)).toList();
     }
     public List<Mail> getMailByAgencyId(Integer idAgency){
-
+        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(idAgency))) {
+            throw new EntityNotFoundException("The id(" + idAgency + ") of the id does not exist");
+        }
         return this.mailRepository.findAll().parallelStream().filter(x -> x.getIdAgency()==(idAgency)).toList();
     }
 
