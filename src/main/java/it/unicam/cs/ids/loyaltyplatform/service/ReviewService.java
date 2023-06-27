@@ -46,6 +46,13 @@ public class ReviewService {
     }
 
     public List<Review> getReviewByCustomerIdAndAgencyId(Integer idCustomer, Integer idAgency) {
+        if(reviewRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(idAgency))) {
+            throw new EntityNotFoundException("The id(" + idAgency + ") of the id does not exist");
+        }
+
+        if(reviewRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(idAgency))) {
+            throw new EntityNotFoundException("The id(" + idAgency + ") of the id does not exist");
+        }
         return this.reviewRepository.findAll().parallelStream().filter(x -> x.getIdCostumer() == idCustomer && x.getIdAgency() == idAgency).toList();
     }
 
