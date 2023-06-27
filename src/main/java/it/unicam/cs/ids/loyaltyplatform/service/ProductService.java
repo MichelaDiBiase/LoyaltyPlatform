@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyplatform.service;
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Product;
 import it.unicam.cs.ids.loyaltyplatform.repository.ProductRepository;
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,9 @@ public class ProductService {
        return this.productRepository.save(product);
     }
     public void deleteProductById(Integer id) {
-
+        if(productRepository.findAll().parallelStream().noneMatch(x -> x.getId().equals(id))) {
+            throw new EntityNotFoundException("The id(" + id + ") of the product to delete does not exist");
+        }
         this.productRepository.findById(id).orElseThrow(NullPointerException::new);
    }
 
