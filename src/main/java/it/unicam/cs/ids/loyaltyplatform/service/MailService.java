@@ -2,7 +2,6 @@ package it.unicam.cs.ids.loyaltyplatform.service;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Mail;
 import it.unicam.cs.ids.loyaltyplatform.repository.MailRepository;
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -17,41 +16,28 @@ public class MailService {
         this.mailRepository = mailRepository;
     }
     public void addMail(Mail mail) {
-        if(this.mailRepository. findByMail(mail.getRecipient()).isPresent()) {
-            throw new EntityExistsException("Mail " + mail.getRecipient() + "it already exists");
-        }
-
          this.mailRepository.save(mail);
     }
-    public void deleteMail(Mail mail) {
-        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getClass().equals(mail))) {
-            throw new EntityNotFoundException("The (" + mail + ") of the mail to delete does not exist");
-        }
-
-        this.mailRepository.delete(mail);
-    }
-    public List<Mail> getMailByCustomerId(Integer idCustomer){
-        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getIdCostumer().equals(idCustomer))) {
-            throw new EntityNotFoundException("The id(" + idCustomer + ") of the id does not exist");
-        }
-        return this.mailRepository.findAll().parallelStream().filter(x -> x.getIdCostumer()==(idCustomer)).toList();
-    }
-    public List<Mail> getMailByAgencyId(Integer idAgency){
-        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(idAgency))) {
-            throw new EntityNotFoundException("The id(" + idAgency + ") of the id does not exist");
-        }
-        return this.mailRepository.findAll().parallelStream().filter(x -> x.getIdAgency()==(idAgency)).toList();
+    public void deleteMailById(Integer id) {
+        this.mailRepository.delete(getMailById(id));
     }
 
-    public List<Mail> getMailByCustomerIdAndAgencyId(Integer idCustomer, Integer idAgency) {
-        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(idAgency))) {
-            throw new EntityNotFoundException("The id(" + idAgency + ") of the id does not exist");
-        }
-
-        if(mailRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(idAgency))) {
-            throw new EntityNotFoundException("The id(" + idAgency + ") of the id does not exist");
-        }
-        return this.mailRepository.findAll().parallelStream().filter(x -> x.getIdCostumer() == idCustomer && x.getIdAgency() == idAgency).toList();
+    public Mail getMailById(Integer id){
+        return this.mailRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Mail does not exist"));
     }
 
+    public List<Mail> getMailByIdCustomer(Integer idCustomer){
+        return this.mailRepository.findByIdCustomer(idCustomer);
+    }
+    public List<Mail> getMailByIdAgency(Integer idAgency){
+        return this.mailRepository.findByIdAgency(idAgency);
+    }
+
+    public List<Mail> getMailByIdCustomerAndIdAgency(Integer idCustomer, Integer idAgency) {
+        return this.mailRepository.findByIdCustomerAndIdAgency(idCustomer, idAgency);
+    }
+
+    public List<Mail> getAllMails() {
+        return this.mailRepository.findAll();
+    }
 }

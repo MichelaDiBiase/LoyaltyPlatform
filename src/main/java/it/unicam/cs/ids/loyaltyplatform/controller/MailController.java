@@ -22,26 +22,30 @@ public class MailController {
         this.mailService.addMail(mail);
     }
 
-    @DeleteMapping(value = "/deleteMail")
-    public void deleteMail(@PathVariable("text") Mail text) {
+    @DeleteMapping(value = "/deleteMailById/{id}")
+    public void deleteMailById(@PathVariable Integer id) {
 
-        this.mailService.deleteMail(text);
+        this.mailService.deleteMailById(id);
     }
 
-    @GetMapping(value = "/getMailByCustomerId")
-    public List<Mail> getMailByCustomerId(Integer idCustomer) {
-        return this.mailService.getMailByCustomerId(idCustomer);
+    @GetMapping(value = "/getMailByIdCustomer/{idCustomer}")
+    public List<Mail> getMailByIdCustomer(@PathVariable Integer idCustomer) {
+        return this.mailService.getMailByIdCustomer(idCustomer);
     }
 
-    @GetMapping(value = "/getMailByAgencyId")
-    public List<Mail> getMailByAgencyId(Integer idAgency) {
-        return this.mailService.getMailByAgencyId(idAgency);
+    @GetMapping(value = "/getMailByIdAgency/{idAgency}")
+    public List<Mail> getMailByIdAgency(@PathVariable Integer idAgency) {
+        return this.mailService.getMailByIdAgency(idAgency);
+    }
+
+    @GetMapping(value = "/getMailByIdCustomerAndIdAgency/{idCustomer}&{idAgency}")
+    public List<Mail> getMailByIdCustomerAndIdAgency(@PathVariable Integer idCustomer, @PathVariable Integer idAgency) {
+        return this.mailService.getMailByIdCustomerAndIdAgency(idCustomer,idAgency);
     }
 
     @GetMapping(value = "/getMailByCustomerIdAndAgencyId")
-    public List<Mail> getMailByCustomerIdAndAgencyId(Integer idCustomer, Integer idAgency) {
-        return this.mailService.getMailByCustomerIdAndAgencyId(idCustomer,idAgency);
+    public List<Mail> getAllMails() {
+        return this.mailService.getAllMails();
     }
-
 
 }

@@ -13,16 +13,13 @@ public class Mail {
 	@Column(nullable = false,unique = true)
 	private Integer id;
 	@Column(nullable = false)
-	private String recipient;
-	@Column(nullable = false)
 	private String text;
 
-	private Integer idCostumer,idAgency;
+	private Integer idCustomer,idAgency;
 
-	public Mail (String recipient, String text, Integer idCostumer, Integer idAgency){
-		this.recipient=recipient;
+	public Mail (String text, Integer idCustomer, Integer idAgency){
 		this.text=text;
-		this.idCostumer=idCostumer;
+		this.idCustomer = idCustomer;
 		this.idAgency=idAgency;
 	}
 
@@ -30,12 +27,8 @@ public class Mail {
 
 	}
 
-	public String getRecipient() {
-		return recipient;
-	}
-
-	public void setRecipient(String recipient) {
-		this.recipient = recipient;
+	public Integer getId() {
+		return id;
 	}
 
 	public String getText() {
@@ -46,12 +39,12 @@ public class Mail {
 		this.text = text;
 	}
 
-	public Integer getIdCostumer() {
-		return idCostumer;
+	public Integer getIdCustomer() {
+		return idCustomer;
 	}
 
-	public void setIdCostumer(Integer idCostumer) {
-		this.idCostumer = idCostumer;
+	public void setIdCustomer(Integer idCostumer) {
+		this.idCustomer = idCostumer;
 	}
 
 	public Integer getIdAgency() {
