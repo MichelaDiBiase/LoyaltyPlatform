@@ -5,6 +5,7 @@ import it.unicam.cs.ids.loyaltyplatform.service.LoyaltyPlanService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public class LoyaltyPlanController {
 
@@ -32,7 +33,7 @@ public class LoyaltyPlanController {
     }
 
     @GetMapping(value = "/getLoyaltyPlanById/{id}")
-    public List<LoyaltyPlan> getLoyaltyPlanById(@PathVariable Integer id) {
+    public Optional<LoyaltyPlan> getLoyaltyPlanById(@PathVariable Integer id) {
         return this.loyaltyPlanService.getLoyaltyPlanById(id);
     }
 

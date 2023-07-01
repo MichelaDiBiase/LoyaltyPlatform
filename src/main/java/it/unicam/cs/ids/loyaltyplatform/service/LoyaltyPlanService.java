@@ -6,6 +6,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoyaltyPlanService {
@@ -39,7 +40,7 @@ public class LoyaltyPlanService {
         return this.loyaltyPlanRepository.findByIdAgency(idAgency);
     }
 
-    public List<LoyaltyPlan> getLoyaltyPlanById(Integer id){
+    public Optional<LoyaltyPlan> getLoyaltyPlanById(Integer id){
         return this.loyaltyPlanRepository.findById(id);
     }
 
