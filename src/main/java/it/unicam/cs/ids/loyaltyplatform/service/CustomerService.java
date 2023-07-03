@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.repository.CustomerRepository;
@@ -17,19 +18,30 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public void updateCustomerToPremium(Integer id, FidelityCard fidelityCard) {
+    public void updateRegistrationOfCustomer(Integer id, LoyaltyPlan loyaltyPlan) {
         Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
-        c.setPremium(true);
+        c.addLoyaltyPlan(loyaltyPlan);
+        this.customerRepository.saveAndFlush(c);
+    }
+
+    public void downgradeRegistrationOfCustomer(Integer id, LoyaltyPlan loyaltyPlan) {
+        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
+        if(!c.checkLoyaltyPlan(loyaltyPlan)) {
+            throw new EntityNotFoundException("The LoyaltyPlan(id:" + loyaltyPlan.getId() + ") to remove from customer(id:" + id + ") does not exist");
+        }
+        c.removeLoyaltyPlan(loyaltyPlan);
+        this.customerRepository.saveAndFlush(c);
+    }
+
+    public void updateCustomerAboutFidelityCard(Integer id, FidelityCard fidelityCard) {
+        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
         c.setFidelityCard(fidelityCard);
         this.customerRepository.saveAndFlush(c);
     }
 
-    public void downgradeCustomerAboutPremium(Integer id) {
+    public void downgradeCustomerAboutFidelityCard(Integer id) {
         Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
-        c.setPremium(!c.getPremium());
-        if(!c.getPremium()) {
-            c.setFidelityCard(null);
-        }
+        c.setFidelityCard(null);
         this.customerRepository.saveAndFlush(c);
     }
 

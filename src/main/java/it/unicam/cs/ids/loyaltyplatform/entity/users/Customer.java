@@ -1,10 +1,13 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -27,6 +30,9 @@ public class Customer implements IUser {
 	private String password;
 	private Integer points;
 	private Boolean premium;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idLoyaltyPlan")
+	private List<LoyaltyPlan> loyaltyPlans;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idFidelityCard")
 	private FidelityCard fidelityCard;
@@ -37,6 +43,27 @@ public class Customer implements IUser {
 		this.gender = gender;
 		this.email = email;
 		this.password = password;
+	}
+
+	public void addLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
+		loyaltyPlans.add(loyaltyPlan);
+		premium = true;
+	}
+
+	public void removeLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
+		loyaltyPlans.remove(loyaltyPlan);
+		if(loyaltyPlans.isEmpty()) {
+			premium = false;
+		}
+	}
+
+	public boolean checkLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
+		for(LoyaltyPlan lp : loyaltyPlans) {
+			if(lp.getId().equals(loyaltyPlan.getId())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void sumPoints(Integer points) {
@@ -77,6 +104,10 @@ public class Customer implements IUser {
 		return premium;
 	}
 
+	public List<LoyaltyPlan> getLoyaltyPlans() {
+		return loyaltyPlans;
+	}
+
 	public FidelityCard getFidelityCard() {
 		return fidelityCard;
 	}
@@ -93,10 +124,12 @@ public class Customer implements IUser {
 		this.surname = surname;
 	}
 
+	@Override
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	@Override
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -111,6 +144,10 @@ public class Customer implements IUser {
 
 	public void setPremium(Boolean premium) {
 		this.premium = premium;
+	}
+
+	public void setLoyaltyPlans(List<LoyaltyPlan> loyaltyPlans) {
+		this.loyaltyPlans = loyaltyPlans;
 	}
 
 	public void setFidelityCard(FidelityCard fidelityCard) {

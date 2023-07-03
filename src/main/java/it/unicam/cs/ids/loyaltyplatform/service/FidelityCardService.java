@@ -13,7 +13,7 @@ public class FidelityCardService {
     private final FidelityCardRepository fidelityCardRepository;
     private final CustomerService customerService;
 
-    public FidelityCardService(FidelityCardRepository fidelityCardRepository, CustomerService customerService, AgencyService agencyService) {
+    public FidelityCardService(FidelityCardRepository fidelityCardRepository, CustomerService customerService) {
         this.fidelityCardRepository = fidelityCardRepository;
         this.customerService = customerService;
     }
@@ -26,11 +26,11 @@ public class FidelityCardService {
             throw new EntityNotFoundException("Customer (id: " + fidelityCard.getIdCustomer() + ") does not exist");
         }
         this.fidelityCardRepository.save(fidelityCard);
-        this.customerService.updateCustomerToPremium(fidelityCard.getIdCustomer(), fidelityCard);
+        this.customerService.updateCustomerAboutFidelityCard(fidelityCard.getIdCustomer(), fidelityCard);
     }
 
     public void deleteFidelityCardFromCustomerById(Integer idFidelityCard) {
-        this.customerService.downgradeCustomerAboutPremium(getFidelityCard(idFidelityCard).getIdCustomer());
+        this.customerService.downgradeCustomerAboutFidelityCard(getFidelityCard(idFidelityCard).getIdCustomer());
         this.fidelityCardRepository.deleteById(idFidelityCard);
     }
 
