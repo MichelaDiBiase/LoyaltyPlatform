@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,7 +9,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name = "loyaltyplan")
-public class LoyaltyPlan {
+public abstract class LoyaltyPlan {
     @Id
     @Column(nullable = false,unique = true)
     private Integer id;
@@ -27,6 +28,9 @@ public class LoyaltyPlan {
     public LoyaltyPlan() {
 
     }
+
+    public abstract boolean useAdvantage(Customer customer);
+
 
     public Integer getId() {
         return id;
