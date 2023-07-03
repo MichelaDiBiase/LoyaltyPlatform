@@ -6,7 +6,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class LoyaltyPlanService {
@@ -19,17 +19,17 @@ public class LoyaltyPlanService {
     }
 
     public void addLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
-      //  if (this.agencyService.getAgencyById(loyaltyPlan.getId())) {
-        //    throw new EntityNotFoundException("The id(" + loyaltyPlan.getIdAgency() + ") of the id does not exist");
-      //  }
+       if (this.agencyService.getAllAgencies().parallelStream().noneMatch(x->x.getId().equals(loyaltyPlan.getIdAgency()))) {
+            throw new EntityNotFoundException("The id(" + loyaltyPlan.getIdAgency() + ") of the agency does not exist");
+        }
         this.loyaltyPlanRepository.save(loyaltyPlan);
     }
-    public void deleteLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
-        if (loyaltyPlanRepository.findAll().parallelStream().noneMatch(x -> x.getIdAgency().equals(loyaltyPlan.getIdAgency()))) {
-            throw new EntityNotFoundException("The id(" + loyaltyPlan.getIdAgency() + ") of the id does not exist");
+    public void deleteLoyaltyPlanById(Integer id) {
+        if (loyaltyPlanRepository.findAll().parallelStream().noneMatch(x -> x.getId().equals(id))) {
+            throw new EntityNotFoundException("The id(" + id + ") of the loyaltyPlan does not exist");
         }
 
-        this.loyaltyPlanRepository.delete(loyaltyPlan);
+        this.loyaltyPlanRepository.deleteById(id);
     }
 
     public List<LoyaltyPlan> getAllLoyaltyPlan(){
@@ -37,11 +37,17 @@ public class LoyaltyPlanService {
     }
 
     public List<LoyaltyPlan> getLoyaltyPlanByIdAgency(Integer idAgency){
+        if (this.agencyService.getAllAgencies().parallelStream().noneMatch(x->x.getId().equals(idAgency))) {
+            throw new EntityNotFoundException("The id(" + idAgency + ") of the agency does not exist");
+        }
         return this.loyaltyPlanRepository.findByIdAgency(idAgency);
     }
 
-    public Optional<LoyaltyPlan> getLoyaltyPlanById(Integer id){
-        return this.loyaltyPlanRepository.findById(id);
+    public LoyaltyPlan getLoyaltyPlanById(Integer id){
+        if (loyaltyPlanRepository.findAll().parallelStream().noneMatch(x -> x.getId().equals(id))) {
+            throw new EntityNotFoundException("The id(" + id + ") of the loyaltyPlan does not exist");
+        }
+        return this.loyaltyPlanRepository.findById(id).orElseThrow(() ->new EntityNotFoundException("The id "+id+" does not corresponds to any  LoyaltyPlanById "));
     }
 
 }

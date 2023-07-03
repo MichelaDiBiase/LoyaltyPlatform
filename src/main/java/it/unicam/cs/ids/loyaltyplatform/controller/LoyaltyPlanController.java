@@ -3,9 +3,8 @@ package it.unicam.cs.ids.loyaltyplatform.controller;
 import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.service.LoyaltyPlanService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
+
 
 public class LoyaltyPlanController {
 
@@ -21,10 +20,10 @@ public class LoyaltyPlanController {
         this.loyaltyPlanService.addLoyaltyPlan(loyaltyPlan);
     }
 
-    @DeleteMapping(value = "/deleteLoyaltyPlan/{loyaltyPlan}")
-    public void deleteLoyaltyPlan(@PathVariable LoyaltyPlan loyaltyPlan) {
+    @DeleteMapping(value = "/deleteLoyaltyPlanById/{id}")
+    public void deleteLoyaltyPlanById(@PathVariable Integer id) {
 
-        this.loyaltyPlanService.deleteLoyaltyPlan(loyaltyPlan);
+        this.loyaltyPlanService.deleteLoyaltyPlanById(id);
     }
 
     @GetMapping(value = "/getLoyaltyPlanByIdAgency/{idAgency}")
@@ -33,7 +32,7 @@ public class LoyaltyPlanController {
     }
 
     @GetMapping(value = "/getLoyaltyPlanById/{id}")
-    public Optional<LoyaltyPlan> getLoyaltyPlanById(@PathVariable Integer id) {
+    public LoyaltyPlan getLoyaltyPlanById(@PathVariable Integer id) {
         return this.loyaltyPlanService.getLoyaltyPlanById(id);
     }
 
