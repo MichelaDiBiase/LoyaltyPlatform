@@ -1,36 +1,39 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Catalog;
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Product;
 import it.unicam.cs.ids.loyaltyplatform.repository.CatalogRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CatalogService {
     private final CatalogRepository catalogRepository;
-    public CatalogService(CatalogRepository catalogRepository) {
+    private final ProductService productService;
+
+    public CatalogService(CatalogRepository catalogRepository, ProductService productService) {
         this.catalogRepository = catalogRepository;
+        this.productService = productService;
     }
 
-    public void addCatalog(Catalog catalog) {//come posso aggiungere il prodotto
+    public void addProductToCatalog(Integer idProduct) {
+        this.catalogRepository.save(this.productService.getProductById(idProduct));
+    }
 
-        this.catalogRepository.save(catalog);
-     }
-
-    public void deleteCatalog(Catalog catalog) {// come cancellare il prodotto
-
-        this.catalogRepository.delete(catalog);
+    public void deleteProductFromCatalog(Integer idProduct) {
+        this.catalogRepository.deleteById(this.productService.getProductById(idProduct).getId());
 
     }
 
 
-    public void updateCatalog(Catalog catalog) {
-        this.catalogRepository.saveAndFlush(catalog);
+    public void updateProductFromCatalog(Product product) {
+        Product p = this.productService.getProductById(product.getId());
+        p.setName(product.getName());
+        p.setDescription(product.getDescription());
+        this.catalogRepository.saveAndFlush(p);
     }
 
-    public List<Catalog> getCatalogByProductId(Integer idProduct) {
-        return this.catalogRepository.findAll().parallelStream().filter(x -> x.getIdProduct() == (idProduct)).toList();
+    public Product getProductFromCatalogByIdProduct(Integer idProduct) {
+        return this.catalogRepository.findById(idProduct).orElseThrow(() -> new EntityNotFoundException("The id(" + idProduct + ") does not correspond to any Product"));
 
     }
 }
