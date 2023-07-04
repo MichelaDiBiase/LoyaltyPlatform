@@ -1,8 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "catalog")
@@ -10,18 +8,16 @@ public class Catalog {
     @Id
     @Column(nullable = false,unique = true)
     private Integer id;
-    @Column(nullable = false)
-    private Integer idProduct;
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Product product;
     @Column(nullable = false)
     private Integer points;
-    @Column(nullable = false)
-    private Integer quantity;
 
 
-    public Catalog(int idProduct,Integer points,Integer quantity){
-        this.idProduct=idProduct;
+    public Catalog(Product product,Integer points,Integer quantity){
+        this.product=product;
         this.points=points;
-        this.quantity=quantity;
 
     }
 
@@ -38,12 +34,12 @@ public class Catalog {
         this.id = id;
     }
 
-    public Integer getIdProduct() {
-        return idProduct;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setIdProduct(Integer idProduct) {
-        this.idProduct = idProduct;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Integer getPoints() {
@@ -52,13 +48,5 @@ public class Catalog {
 
     public void setPoints(Integer points) {
         this.points = points;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 }
