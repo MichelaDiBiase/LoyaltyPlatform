@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 public class LoyaltyPlanCashback extends LoyaltyPlan{
     private Double percentage;
 
-    public LoyaltyPlanCashback (Integer idAgency, Integer registrationCount,Double percentage){
+    public LoyaltyPlanCashback (Integer idAgency,Double percentage){
         super(idAgency);
         this.percentage=percentage;
     }

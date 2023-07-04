@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @DiscriminatorValue("membership")
 public class LoyaltyPlanMembership extends LoyaltyPlan {
 
-    public LoyaltyPlanMembership(Integer idAgency, Integer registrationCount) {
+    public LoyaltyPlanMembership(Integer idAgency) {
         super(idAgency);
     }
 

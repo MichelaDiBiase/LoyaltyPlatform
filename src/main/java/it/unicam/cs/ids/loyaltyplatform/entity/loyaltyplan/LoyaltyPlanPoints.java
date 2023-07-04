@@ -10,7 +10,7 @@ import java.util.List;
 @DiscriminatorValue("points")
 public class LoyaltyPlanPoints extends LoyaltyPlan {
 
-    public LoyaltyPlanPoints (Integer idAgency, Integer registrationCount){
+    public LoyaltyPlanPoints (Integer idAgency){
         super(idAgency);
     }
 

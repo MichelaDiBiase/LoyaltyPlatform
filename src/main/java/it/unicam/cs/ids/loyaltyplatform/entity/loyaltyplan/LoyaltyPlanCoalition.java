@@ -13,13 +13,12 @@ public class LoyaltyPlanCoalition extends LoyaltyPlan{
     @OneToMany(cascade = CascadeType.ALL)
     private List<Agency> agenciesCoalition;
 
-    public LoyaltyPlanCoalition (Integer idAgency, Integer registrationCount, List<Agency> agenciesCoalition){
+    public LoyaltyPlanCoalition (Integer idAgency, List<Agency> agenciesCoalition){
         super(idAgency);
         this.agenciesCoalition = agenciesCoalition;
     }
 
-    public LoyaltyPlanCoalition (Integer idAgency, Integer registrationCount){
-
+    public LoyaltyPlanCoalition (Integer idAgency){
         super(idAgency);
     }
 
