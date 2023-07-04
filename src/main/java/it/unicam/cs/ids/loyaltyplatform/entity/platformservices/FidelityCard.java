@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram;
+package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;

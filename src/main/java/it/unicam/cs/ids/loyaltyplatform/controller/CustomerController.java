@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.service.CustomerService;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
+import it.unicam.cs.ids.loyaltyplatform.service.RegistrationLoyaltyPlanService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
     private final CustomerService customerService;
+    private final RegistrationLoyaltyPlanService registrationService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, RegistrationLoyaltyPlanService registrationService) {
         this.customerService = customerService;
+        this.registrationService = registrationService;
     }
 
     @PostMapping(value = "/addCustomer")
@@ -33,6 +36,12 @@ public class CustomerController {
     @PutMapping(value = "/addPointsToCustomerById/{id}/points/{points}")
     public void addPointsToCustomerById(@PathVariable Integer id, @PathVariable Integer points) {
         this.customerService.addPointsToCustomerById(id, points);
+    }
+
+    @PostMapping(value = "/redeemReward/{idProduct}/idRegistration/{idRegistration}")
+    public void redeemReward(@PathVariable Integer idProduct, @PathVariable Integer idRegistration){
+       this.registrationService.redeemProduct(idProduct, idRegistration);
+
     }
 
     @GetMapping(value = "/getCustomerById/{id}")

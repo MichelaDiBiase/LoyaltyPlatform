@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
+import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlanMembership;
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.repository.FidelityCardRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,25 +14,26 @@ public class FidelityCardService {
     private final FidelityCardRepository fidelityCardRepository;
     private final CustomerService customerService;
 
-    public FidelityCardService(FidelityCardRepository fidelityCardRepository, CustomerService customerService) {
+    public FidelityCardService(FidelityCardRepository fidelityCardRepository, CustomerService customerService, LoyaltyPlanService loyaltyPlanService) {
         this.fidelityCardRepository = fidelityCardRepository;
         this.customerService = customerService;
     }
 
-    public void addFidelityCardToCustomer(FidelityCard fidelityCard) {
+    public void addFidelityCard(FidelityCard fidelityCard) {
         if(this.fidelityCardRepository.findByIdCustomer(fidelityCard.getIdCustomer()).isPresent()) {
             throw new EntityExistsException("Customer (id: " + fidelityCard.getIdCustomer() + ") has already a Fidelity Card");
         }
         if(this.customerService.getAllCustomers().parallelStream().noneMatch(x -> x.getId().equals(fidelityCard.getIdCustomer()))) {
             throw new EntityNotFoundException("Customer (id: " + fidelityCard.getIdCustomer() + ") does not exist");
         }
+        if(this.customerService.getAllRegistrationByIdCustomer(fidelityCard.getIdCustomer()).parallelStream().noneMatch(x -> x.getLoyaltyPlan() instanceof LoyaltyPlanMembership)) {
+            throw new EntityNotFoundException("Customer (id: " + fidelityCard.getIdCustomer() + ") is not registered to loyalty plan Membership");
+        }
         this.fidelityCardRepository.save(fidelityCard);
-        this.customerService.updateCustomerAboutFidelityCard(fidelityCard.getIdCustomer(), fidelityCard);
     }
 
-    public void deleteFidelityCardFromCustomerById(Integer idFidelityCard) {
-        this.customerService.downgradeCustomerAboutFidelityCard(getFidelityCard(idFidelityCard).getIdCustomer());
-        this.fidelityCardRepository.deleteById(idFidelityCard);
+    public void deleteFidelityCardById(Integer id) {
+        this.fidelityCardRepository.deleteById(id);
     }
 
     public FidelityCard getFidelityCard(Integer idFidelityCard) {

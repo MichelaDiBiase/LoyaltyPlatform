@@ -35,7 +35,7 @@ public class AgencyController {
         return this.agencyService.getAgencyById(id);
     }
 
-    @GetMapping(value = "/getAllAgency")
+    @GetMapping(value = "/getAllAgencies")
     public List<Agency> getAllAgencies() {
         return this.agencyService.getAllAgencies();
     }

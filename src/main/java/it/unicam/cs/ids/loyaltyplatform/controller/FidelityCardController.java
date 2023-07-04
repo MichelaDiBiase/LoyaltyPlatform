@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.service.CustomerService;
 import it.unicam.cs.ids.loyaltyplatform.service.FidelityCardService;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +16,14 @@ public class FidelityCardController {
         this.fidelityCardService = fidelityCardService;
     }
 
-    @PostMapping(value = "/addFidelityCardToCustomer")
-    public void addFidelityCardToCustomer(@RequestBody FidelityCard fidelityCard) {
-        this.fidelityCardService.addFidelityCardToCustomer(fidelityCard);
+    @PostMapping(value = "/addFidelityCard")
+    public void addFidelityCard(@RequestBody FidelityCard fidelityCard) {
+        this.fidelityCardService.addFidelityCard(fidelityCard);
     }
 
     @DeleteMapping(value = "/deleteFidelityCardFromCustomerById/{idCustomer}")
-    public void deleteFidelityCardFromCustomerById(@PathVariable Integer idCustomer) {
-        this.fidelityCardService.deleteFidelityCardFromCustomerById(idCustomer);
+    public void deleteFidelityCardById(@PathVariable Integer id) {
+        this.fidelityCardService.deleteFidelityCardById(id);
     }
 
     @GetMapping(value = "/getFidelityCard/{idFidelityCard}")

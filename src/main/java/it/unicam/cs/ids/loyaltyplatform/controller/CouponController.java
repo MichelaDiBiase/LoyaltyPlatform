@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.Coupon;
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Coupon;
 import it.unicam.cs.ids.loyaltyplatform.service.CouponService;
 import org.springframework.web.bind.annotation.*;
 

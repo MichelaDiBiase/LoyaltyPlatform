@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlan;
-import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
+import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,30 +17,18 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public void updateRegistrationOfCustomer(Integer id, LoyaltyPlan loyaltyPlan) {
+    public void updateRegistrationOfCustomer(Integer id, RegistrationLoyaltyPlan registration) {
         Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
-        c.addLoyaltyPlan(loyaltyPlan);
+        c.addRegistration(registration);
         this.customerRepository.saveAndFlush(c);
     }
 
-    public void downgradeRegistrationOfCustomer(Integer id, LoyaltyPlan loyaltyPlan) {
+    public void downgradeRegistrationOfCustomer(Integer id, RegistrationLoyaltyPlan registration) {
         Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
-        if(!c.checkLoyaltyPlan(loyaltyPlan)) {
-            throw new EntityNotFoundException("The LoyaltyPlan(id:" + loyaltyPlan.getId() + ") to remove from customer(id:" + id + ") does not exist");
+        if(!c.checkRegistration(registration)) {
+            throw new EntityNotFoundException("The LoyaltyPlan(id:" + registration.getId() + ") to remove from customer(id:" + id + ") does not exist");
         }
-        c.removeLoyaltyPlan(loyaltyPlan);
-        this.customerRepository.saveAndFlush(c);
-    }
-
-    public void updateCustomerAboutFidelityCard(Integer id, FidelityCard fidelityCard) {
-        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
-        c.setFidelityCard(fidelityCard);
-        this.customerRepository.saveAndFlush(c);
-    }
-
-    public void downgradeCustomerAboutFidelityCard(Integer id) {
-        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
-        c.setFidelityCard(null);
+        c.removeRegistration(registration);
         this.customerRepository.saveAndFlush(c);
     }
 
@@ -81,6 +68,10 @@ public class CustomerService {
 
     public Customer getCustomerById(Integer id) {
         return this.customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("The id(" + id + ") of the Customer to get does not exist"));
+    }
+
+    public List<RegistrationLoyaltyPlan> getAllRegistrationByIdCustomer(Integer id) {
+        return getCustomerById(id).getRegistrations();
     }
 
     public List<Customer> getAllCustomers() {

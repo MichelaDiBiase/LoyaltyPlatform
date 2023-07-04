@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.repository;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.Coupon;
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Coupon;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

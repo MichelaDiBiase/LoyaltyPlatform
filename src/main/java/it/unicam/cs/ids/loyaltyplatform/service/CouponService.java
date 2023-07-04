@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.Coupon;
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Coupon;
 import it.unicam.cs.ids.loyaltyplatform.repository.CouponRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;

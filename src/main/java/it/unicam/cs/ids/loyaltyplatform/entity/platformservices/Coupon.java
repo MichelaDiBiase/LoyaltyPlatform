@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram;
+package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
@@ -13,20 +13,18 @@ public class Coupon {
 	private Integer code;
 	private Integer points;
 	@Column(nullable = false)
-	private Integer discount;
+	private Double discount;
 	private Integer idCustomer;
 	@Column(nullable = false)
 	private Integer idAgency;
 
-	public Coupon(Integer code, Integer points, Integer discount, Integer idAgency) {
-		this.code = code;
+	public Coupon(Integer points, Double discount, Integer idAgency) {
 		this.points = points;
 		this.discount = discount;
 		this.idAgency = idAgency;
 	}
 
-	public Coupon(Integer code, Integer discount, Integer idAgency) {
-		this.code = code;
+	public Coupon(Double discount, Integer idAgency) {
 		this.discount = discount;
 		this.idAgency = idAgency;
 	}
@@ -39,7 +37,7 @@ public class Coupon {
 		return points;
 	}
 
-	public Integer getDiscount() {
+	public Double getDiscount() {
 		return discount;
 	}
 
@@ -59,7 +57,7 @@ public class Coupon {
 		this.points = points;
 	}
 
-	public void setDiscount(Integer discount) {
+	public void setDiscount(Double discount) {
 		this.discount = discount;
 	}
 

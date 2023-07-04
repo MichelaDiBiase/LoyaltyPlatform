@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlan;
-import it.unicam.cs.ids.loyaltyplatform.entity.premiumprogram.FidelityCard;
+import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,13 +28,10 @@ public class Customer implements IUser {
 	@Column(nullable = false)
 	private String password;
 	private Integer points;
-	private Boolean premium;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idLoyaltyPlan")
-	private List<LoyaltyPlan> loyaltyPlans;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idFidelityCard")
-	private FidelityCard fidelityCard;
+	private List<RegistrationLoyaltyPlan> registrations;
+	private Boolean premium;
 
 	public Customer(String name, String surname, String email, String password, Boolean gender) {
 		this.name = name;
@@ -45,21 +41,21 @@ public class Customer implements IUser {
 		this.password = password;
 	}
 
-	public void addLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
-		loyaltyPlans.add(loyaltyPlan);
+	public void addRegistration(RegistrationLoyaltyPlan registration) {
+		registrations.add(registration);
 		premium = true;
 	}
 
-	public void removeLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
-		loyaltyPlans.remove(loyaltyPlan);
-		if(loyaltyPlans.isEmpty()) {
+	public void removeRegistration(RegistrationLoyaltyPlan registration) {
+		registrations.remove(registration);
+		if(registrations.isEmpty()) {
 			premium = false;
 		}
 	}
 
-	public boolean checkLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
-		for(LoyaltyPlan lp : loyaltyPlans) {
-			if(lp.getId().equals(loyaltyPlan.getId())) {
+	public boolean checkRegistration(RegistrationLoyaltyPlan registration) {
+		for(RegistrationLoyaltyPlan r : registrations) {
+			if(r.getId().equals(registration.getId())) {
 				return true;
 			}
 		}
@@ -104,12 +100,8 @@ public class Customer implements IUser {
 		return premium;
 	}
 
-	public List<LoyaltyPlan> getLoyaltyPlans() {
-		return loyaltyPlans;
-	}
-
-	public FidelityCard getFidelityCard() {
-		return fidelityCard;
+	public List<RegistrationLoyaltyPlan> getRegistrations() {
+		return registrations;
 	}
 
 	public void setId(Integer id) {
@@ -146,11 +138,7 @@ public class Customer implements IUser {
 		this.premium = premium;
 	}
 
-	public void setLoyaltyPlans(List<LoyaltyPlan> loyaltyPlans) {
-		this.loyaltyPlans = loyaltyPlans;
-	}
-
-	public void setFidelityCard(FidelityCard fidelityCard) {
-		this.fidelityCard = fidelityCard;
+	public void setRegistrations(List<RegistrationLoyaltyPlan> registrations) {
+		this.registrations = registrations;
 	}
 }

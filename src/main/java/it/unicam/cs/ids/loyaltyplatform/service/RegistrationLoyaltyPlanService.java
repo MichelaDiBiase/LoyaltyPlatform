@@ -1,7 +1,5 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlanLevels;
-import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlanMembership;
 import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlanPoints;
 import it.unicam.cs.ids.loyaltyplatform.repository.RegistrationLoyaltyPlanRepository;
@@ -14,19 +12,30 @@ import java.util.List;
 public class RegistrationLoyaltyPlanService {
     private final RegistrationLoyaltyPlanRepository registrationRepository;
     private final CustomerService customerService;
+    private final ProductService productService;
 
-    public RegistrationLoyaltyPlanService(RegistrationLoyaltyPlanRepository registrationRepository, CustomerService customerService) {
+    public RegistrationLoyaltyPlanService(RegistrationLoyaltyPlanRepository registrationRepository, CustomerService customerService, ProductService productService) {
         this.registrationRepository = registrationRepository;
         this.customerService = customerService;
+        this.productService = productService;
+    }
+
+    public void redeemProduct(Integer idProduct, Integer idRegistration) {
+        RegistrationLoyaltyPlanPoints registrationPoints = (RegistrationLoyaltyPlanPoints) getRegistrationById(idRegistration);
+        registrationPoints.addRedeemedProduct(this.productService.getProductById(idProduct));
+        updateRegistration(registrationPoints);
     }
 
     public void addRegistration(RegistrationLoyaltyPlan registration) {
+        if(this.customerService.getAllCustomers().parallelStream().noneMatch(x -> x.getId().equals(registration.getIdCustomer()))) {
+            throw new EntityNotFoundException("The id(" + registration.getIdCustomer() + ") of the customer does not exist");
+        }
         this.registrationRepository.save(registration);
-        this.customerService.updateRegistrationOfCustomer(registration.getIdCustomer(), registration.getLoyaltyPlan());
+        this.customerService.updateRegistrationOfCustomer(registration.getIdCustomer(), registration);
     }
 
     public void deleteRegistrationById(Integer id) {
-        this.customerService.downgradeRegistrationOfCustomer(getRegistrationById(id).getIdCustomer(), getRegistrationById(id).getLoyaltyPlan());
+        this.customerService.downgradeRegistrationOfCustomer(getRegistrationById(id).getIdCustomer(), getRegistrationById(id));
         this.registrationRepository.deleteById(id);
     }
 
