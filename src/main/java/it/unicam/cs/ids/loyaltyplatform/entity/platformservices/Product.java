@@ -12,10 +12,20 @@ public class Product {
     @Column(nullable = false,unique = true)
     private Integer id;
     @Column(nullable = false)
+    private Integer idAgency;
+    @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private String description;
 
+    public Product(Integer idAgency, String name, String description) {
+        this.idAgency = idAgency;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Product() {
+    }
 
     public Integer getId() {
         return id;
@@ -25,6 +35,14 @@ public class Product {
         this.id = id;
     }
 
+    public Integer getIdAgency() {
+        return idAgency;
+    }
+
+    public void setIdAgency(Integer idAgency) {
+        this.idAgency = idAgency;
+    }
+
     public String getName() {
         return name;
     }
@@ -32,7 +50,6 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
-
 
 
     public String getDescription() {
