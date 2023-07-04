@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "catalog")
 public class Catalog {
     @Id
-    @Column(nullable = false,unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @JoinColumn(nullable = false)
     @ManyToOne

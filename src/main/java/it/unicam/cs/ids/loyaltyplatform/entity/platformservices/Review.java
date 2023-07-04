@@ -1,15 +1,12 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.platformservices;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "review")
 public class Review {
 	@Id
-	@Column(nullable = false,unique = true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(nullable = false)
 	private String assessment;
