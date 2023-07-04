@@ -5,7 +5,8 @@ import it.unicam.cs.ids.loyaltyplatform.service.LoyaltyPlanService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-
+@RestController
+@RequestMapping("/loyaltyPlan")
 public class LoyaltyPlanController {
 
     private final LoyaltyPlanService loyaltyPlanService;
