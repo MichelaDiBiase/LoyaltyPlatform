@@ -14,11 +14,14 @@ public class Product {
     private String name;
     @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private Integer points;
 
-    public Product(Integer idAgency, String name, String description) {
+    public Product(Integer idAgency, String name, String description,Integer points) {
         this.idAgency = idAgency;
         this.name = name;
         this.description = description;
+        this.points=points;
     }
 
     public Product() {
@@ -57,4 +60,11 @@ public class Product {
         this.description = description;
     }
 
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
 }

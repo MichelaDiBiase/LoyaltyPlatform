@@ -19,9 +19,10 @@ public class LoyaltyPlanService {
     }
 
     public void addLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
-       if (this.agencyService.getAllAgencies().parallelStream().noneMatch(x->x.getId().equals(loyaltyPlan.getIdAgency()))) {
+        if (this.agencyService.getAllAgencies().parallelStream().noneMatch(x->x.getId().equals(loyaltyPlan.getIdAgency()))) {
             throw new EntityNotFoundException("The id(" + loyaltyPlan.getIdAgency() + ") of the agency does not exist");
         }
+        loyaltyPlan.setRegistrationCount(0);
         this.loyaltyPlanRepository.save(loyaltyPlan);
     }
     public void deleteLoyaltyPlanById(Integer id) {
@@ -30,6 +31,12 @@ public class LoyaltyPlanService {
         }
 
         this.loyaltyPlanRepository.deleteById(id);
+    }
+
+    public void updateLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
+        LoyaltyPlan l = getLoyaltyPlanById(loyaltyPlan.getId());
+        l.setRegistrationCount(loyaltyPlan.getRegistrationCount());
+        this.loyaltyPlanRepository.saveAndFlush(l);
     }
 
     public List<LoyaltyPlan> getAllLoyaltyPlan(){

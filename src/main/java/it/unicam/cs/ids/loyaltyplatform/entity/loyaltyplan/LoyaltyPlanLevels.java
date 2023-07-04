@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("planLevels")
+@DiscriminatorValue("levels")
 public class LoyaltyPlanLevels extends LoyaltyPlan {
 
     private Integer level;
