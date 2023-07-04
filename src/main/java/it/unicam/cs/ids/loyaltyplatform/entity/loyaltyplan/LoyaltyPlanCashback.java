@@ -9,7 +9,7 @@ public class LoyaltyPlanCashback extends LoyaltyPlan{
     private Double percentage;
 
     public LoyaltyPlanCashback (Integer idAgency, Integer registrationCount,Double percentage){
-        super(idAgency,registrationCount);
+        super(idAgency);
         this.percentage=percentage;
     }
 

@@ -16,9 +16,9 @@ public abstract class LoyaltyPlan {
     @Column()
     private Integer registrationCount;
 
-    public LoyaltyPlan(Integer idAgency, Integer registrationCount){
+    public LoyaltyPlan(Integer idAgency){
         this.idAgency=idAgency;
-        this.registrationCount=registrationCount;
+        this.registrationCount=0;
     }
 
     public LoyaltyPlan() {

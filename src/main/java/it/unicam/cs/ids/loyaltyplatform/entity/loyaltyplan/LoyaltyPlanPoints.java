@@ -11,7 +11,7 @@ import java.util.List;
 public class LoyaltyPlanPoints extends LoyaltyPlan {
 
     public LoyaltyPlanPoints (Integer idAgency, Integer registrationCount){
-        super(idAgency,registrationCount);
+        super(idAgency);
     }
 
     public LoyaltyPlanPoints () {

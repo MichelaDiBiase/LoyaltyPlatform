@@ -14,12 +14,13 @@ public class LoyaltyPlanCoalition extends LoyaltyPlan{
     private List<Agency> agenciesCoalition;
 
     public LoyaltyPlanCoalition (Integer idAgency, Integer registrationCount, List<Agency> agenciesCoalition){
-        super(idAgency,registrationCount);
+        super(idAgency);
         this.agenciesCoalition = agenciesCoalition;
     }
 
     public LoyaltyPlanCoalition (Integer idAgency, Integer registrationCount){
-        super(idAgency,registrationCount);
+
+        super(idAgency);
     }
 
     public LoyaltyPlanCoalition () {

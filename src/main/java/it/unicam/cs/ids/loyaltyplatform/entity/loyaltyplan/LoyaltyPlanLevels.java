@@ -17,13 +17,13 @@ public class LoyaltyPlanLevels extends LoyaltyPlan {
 
 
     public LoyaltyPlanLevels(Integer idAgency, Integer registrationCount, Integer level, Double moneySpent) {
-        super(idAgency, registrationCount);
+        super(idAgency);
         this.level = level;
         this.moneySpent = moneySpent;
     }
 
     public LoyaltyPlanLevels(Integer idAgency, Integer registrationCount) {
-        super(idAgency, registrationCount);
+        super(idAgency);
     }
 
     public LoyaltyPlanLevels() {

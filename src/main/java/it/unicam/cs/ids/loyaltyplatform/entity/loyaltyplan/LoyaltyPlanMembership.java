@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class LoyaltyPlanMembership extends LoyaltyPlan {
 
     public LoyaltyPlanMembership(Integer idAgency, Integer registrationCount) {
-        super(idAgency, registrationCount);
+        super(idAgency);
     }
 
     public LoyaltyPlanMembership() {
