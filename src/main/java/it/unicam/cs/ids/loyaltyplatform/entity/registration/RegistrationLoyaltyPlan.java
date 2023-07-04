@@ -1,5 +1,6 @@
-package it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan;
+package it.unicam.cs.ids.loyaltyplatform.entity.registration;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlan;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
@@ -8,21 +9,22 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor
 @Table(name = "registrations")
-public class RegistrationLoyaltyPlan {
+public abstract class RegistrationLoyaltyPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true,
             nullable = false)
     private Integer idCustomer;
+    @ManyToOne
     @JoinColumn(name = "idLoyaltyPlan")
     private LoyaltyPlan loyaltyPlan;
     private LocalDate date;
 
-    public RegistrationLoyaltyPlan(Integer idCustomer, LoyaltyPlan loyaltyPlan, LocalDate date) {
+    public RegistrationLoyaltyPlan(Integer idCustomer, LoyaltyPlan loyaltyPlan) {
         this.idCustomer = idCustomer;
         this.loyaltyPlan = loyaltyPlan;
-        this.date = date;
+        this.date = LocalDate.now();;
     }
 
     public Integer getId() {

@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.RegistrationLoyaltyPlan;
+import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.service.RegistrationLoyaltyPlanService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

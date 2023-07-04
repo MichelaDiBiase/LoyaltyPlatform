@@ -1,6 +1,9 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.RegistrationLoyaltyPlan;
+import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlanLevels;
+import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlanMembership;
+import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
+import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlanPoints;
 import it.unicam.cs.ids.loyaltyplatform.repository.RegistrationLoyaltyPlanRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,13 @@ public class RegistrationLoyaltyPlanService {
     public void deleteRegistrationById(Integer id) {
         this.customerService.downgradeRegistrationOfCustomer(getRegistrationById(id).getIdCustomer(), getRegistrationById(id).getLoyaltyPlan());
         this.registrationRepository.deleteById(id);
+    }
+
+    public void updateRegistration(RegistrationLoyaltyPlan registration) {
+        if(this.registrationRepository.findById(registration.getId()).isEmpty()) {
+            throw new EntityNotFoundException("The registration(id:" + registration.getId() + ") does not exist");
+        }
+        this.registrationRepository.saveAndFlush(registration);
     }
 
     public RegistrationLoyaltyPlan getRegistrationById(Integer id){
