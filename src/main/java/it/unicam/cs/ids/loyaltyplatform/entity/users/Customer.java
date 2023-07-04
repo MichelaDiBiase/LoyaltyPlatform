@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
@@ -32,6 +33,9 @@ public class Customer implements IUser {
 	@JoinColumn(name = "idLoyaltyPlan")
 	private List<RegistrationLoyaltyPlan> registrations;
 	private Boolean premium;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idFidelityCard")
+	private FidelityCard fidelityCard;
 
 	public Customer(String name, String surname, String email, String password, Boolean gender) {
 		this.name = name;
@@ -96,12 +100,16 @@ public class Customer implements IUser {
 		return gender;
 	}
 
+	public List<RegistrationLoyaltyPlan> getRegistrations() {
+		return registrations;
+	}
+
 	public Boolean getPremium() {
 		return premium;
 	}
 
-	public List<RegistrationLoyaltyPlan> getRegistrations() {
-		return registrations;
+	public FidelityCard getFidelityCard() {
+		return fidelityCard;
 	}
 
 	public void setId(Integer id) {
@@ -134,11 +142,16 @@ public class Customer implements IUser {
 		this.gender = gender;
 	}
 
+
+	public void setRegistrations(List<RegistrationLoyaltyPlan> registrations) {
+		this.registrations = registrations;
+	}
+
 	public void setPremium(Boolean premium) {
 		this.premium = premium;
 	}
 
-	public void setRegistrations(List<RegistrationLoyaltyPlan> registrations) {
-		this.registrations = registrations;
+	public void setFidelityCard(FidelityCard fidelityCard) {
+		this.fidelityCard = fidelityCard;
 	}
 }

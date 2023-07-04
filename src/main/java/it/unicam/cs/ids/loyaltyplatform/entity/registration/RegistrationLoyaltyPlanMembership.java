@@ -1,22 +1,19 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.registration;
 
-
-import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlanMembership;
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.FidelityCard;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 @Entity
-@DiscriminatorValue("membershipRegistration")
+@DiscriminatorValue("membership")
 @NoArgsConstructor
 public class RegistrationLoyaltyPlanMembership extends RegistrationLoyaltyPlan {
 
     @JoinColumn(name = "idFidelityCard")
     @OneToOne(cascade = CascadeType.ALL)
     FidelityCard fidelityCard;
-    public RegistrationLoyaltyPlanMembership(Integer idCustomer, LoyaltyPlanMembership loyaltyPlanMembership, FidelityCard fidelityCard) {
-        super(idCustomer, loyaltyPlanMembership);
-        this.fidelityCard = fidelityCard;
+    public RegistrationLoyaltyPlanMembership(Integer idCustomer, Integer idLoyaltyPlan) {
+        super(idCustomer, idLoyaltyPlan);
     }
 
     public FidelityCard getFidelityCard() {

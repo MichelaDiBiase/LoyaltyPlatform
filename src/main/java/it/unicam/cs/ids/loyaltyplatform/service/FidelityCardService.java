@@ -26,9 +26,7 @@ public class FidelityCardService {
         if(this.customerService.getAllCustomers().parallelStream().noneMatch(x -> x.getId().equals(fidelityCard.getIdCustomer()))) {
             throw new EntityNotFoundException("Customer (id: " + fidelityCard.getIdCustomer() + ") does not exist");
         }
-        if(this.customerService.getAllRegistrationByIdCustomer(fidelityCard.getIdCustomer()).parallelStream().noneMatch(x -> x.getLoyaltyPlan() instanceof LoyaltyPlanMembership)) {
-            throw new EntityNotFoundException("Customer (id: " + fidelityCard.getIdCustomer() + ") is not registered to loyalty plan Membership");
-        }
+        this.customerService.getCustomerById(fidelityCard.getIdCustomer()).setFidelityCard(fidelityCard);
         this.fidelityCardRepository.save(fidelityCard);
     }
 
