@@ -8,15 +8,6 @@ import jakarta.persistence.*;
 @DiscriminatorValue("membership")
 public class LoyaltyPlanMembership extends LoyaltyPlan{
 
-    @JoinColumn(name = "idFidelityCard")
-    @OneToOne(cascade = CascadeType.ALL)
-    FidelityCard fidelityCard;
-
-    public LoyaltyPlanMembership(Integer idAgency, Integer registrationCount, FidelityCard fidelityCard){
-        super(idAgency,registrationCount);
-        this.fidelityCard = fidelityCard;
-    }
-
     public LoyaltyPlanMembership(Integer idAgency, Integer registrationCount){
         super(idAgency,registrationCount);
     }
@@ -25,11 +16,4 @@ public class LoyaltyPlanMembership extends LoyaltyPlan{
 
     }
 
-    public FidelityCard getFidelityCard() {
-        return fidelityCard;
-    }
-
-    public void setFidelityCard(FidelityCard fidelityCard) {
-        this.fidelityCard = fidelityCard;
-    }
 }
