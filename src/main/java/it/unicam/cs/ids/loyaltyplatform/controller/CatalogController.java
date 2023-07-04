@@ -1,42 +1,38 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Catalog;
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Product;
 import it.unicam.cs.ids.loyaltyplatform.service.CatalogService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/catalog")
 public class CatalogController {
-    
+
 
     private final CatalogService catalogService;
 
     public CatalogController(CatalogService catalogService) {
         this.catalogService = catalogService;
-     
-        
+
+
     }
-    @PostMapping(value = "/addCatalog")
-    public void addCatalog(@RequestBody Catalog catalog) {
-
-        this.catalogService.addCatalog(catalog);
+    @PostMapping(value = "/addProductToCatalog")
+    public void addProductToCatalog(@RequestBody Integer idProduct) {
+        this.catalogService.addProductToCatalog(idProduct);
     }
 
-    @DeleteMapping(value = "/deleteCatalog")
-    public void deleteCatalog(@PathVariable("catalog") Catalog catalog) {
-
-        this.catalogService.deleteCatalog(catalog);
+    @DeleteMapping(value = "/deleteProductFromCatalog/{idProduct}")
+    public void deleteProductFromCatalog(@PathVariable Integer idProduct) {
+        this.catalogService.deleteProductFromCatalog(idProduct);
     }
     @PutMapping(value = "/updateCatalog")
-    public void updateCatalog(@RequestBody Catalog catalog) {
+    public void updateProductFromCatalog(@RequestBody Product product) {
 
-        this.catalogService.updateCatalog(catalog);
+        this.catalogService.updateProductFromCatalog(product);
     }
-    @GetMapping(value = "/getCatalogByProductId")
-    public List<Catalog> getCatalogByProductId(Integer idProduct) {
-        return this.catalogService.getCatalogByProductId(idProduct);
+    @GetMapping(value = "/getProductFromCatalogByIdProduct/{idProduct}")
+    public Product getProductFromCatalogByIdProduct(@PathVariable Integer idProduct) {
+        return this.catalogService.getProductFromCatalogByIdProduct(idProduct);
     }
 
 }
