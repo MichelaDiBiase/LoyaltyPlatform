@@ -18,6 +18,23 @@ public class LoyaltyPlanService {
         this.agencyService = agencyService;
     }
 
+    public void addAgencyToCoalition(Integer idAgency1, Integer idAgency2) {
+        boolean coalitionDone = false;
+        LoyaltyPlan loyaltyPlan = null;
+        List<LoyaltyPlan> listOfLPAgency1 = getLoyaltyPlanByIdAgency(idAgency1);
+        for(LoyaltyPlan lp : listOfLPAgency1) {
+            if(lp instanceof LoyaltyPlanCoalition loyaltyPlanCoalition) {
+                loyaltyPlanCoalition.addAgencyToCoalition(this.agencyService.getAgencyById(idAgency2));
+                loyaltyPlan = getLoyaltyPlanById(lp.getId());
+                coalitionDone = true;
+            }
+        }
+        if(!coalitionDone) {
+            throw new IllegalArgumentException("The Agency1 does not have a loyalty plan of coalition");
+        }
+        updateLoyaltyPlan(loyaltyPlan);
+    }
+
     public boolean isLoyaltyPlanExist(LoyaltyPlan loyaltyPlan) {
         List<LoyaltyPlan> listOfLP = getLoyaltyPlanByIdAgency(loyaltyPlan.getIdAgency());
         for(LoyaltyPlan lp : listOfLP) {
