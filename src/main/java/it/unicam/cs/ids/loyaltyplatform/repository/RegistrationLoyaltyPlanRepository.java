@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RegistrationLoyaltyPlanRepository extends JpaRepository<RegistrationLoyaltyPlan, Integer> {
+
+    List<RegistrationLoyaltyPlan> findByIdLoyaltyPlan(Integer idLoyaltyPlan);
     List<RegistrationLoyaltyPlan> findByIdCustomer(Integer idCustomer);
 }

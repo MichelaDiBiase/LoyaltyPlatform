@@ -11,6 +11,8 @@ public class FidelityCard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(nullable = false,
+			unique = true)
 	private Integer idCustomer;
 
 	public FidelityCard(Integer idCustomer) {

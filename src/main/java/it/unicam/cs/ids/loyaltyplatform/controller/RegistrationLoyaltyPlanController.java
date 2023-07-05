@@ -30,6 +30,11 @@ public class RegistrationLoyaltyPlanController {
         return this.registrationService.getRegistrationById(id);
     }
 
+    @GetMapping(value = "/getRegistrationsByIdLoyaltyPlan/{idLoyaltyPlan}")
+    public List<RegistrationLoyaltyPlan> getRegistrationsByIdLoyaltyPlan(@PathVariable Integer idLoyaltyPlan){
+        return this.registrationService.getRegistrationsByIdLoyaltyPlan(idLoyaltyPlan);
+    }
+
     @GetMapping(value = "/getRegistrationsByIdCustomer/{idCustomer}")
     public List<RegistrationLoyaltyPlan> getRegistrationsByIdCustomer(@PathVariable Integer idCustomer){
         return this.registrationService.getRegistrationsByIdCustomer(idCustomer);

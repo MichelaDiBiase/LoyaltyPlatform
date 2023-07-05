@@ -92,7 +92,7 @@ public class RegistrationLoyaltyPlanService {
         return false;
     }
 
-    public ResponseEntity<String> addRegistration(RegistrationLoyaltyPlan registration) {
+    public void addRegistration(RegistrationLoyaltyPlan registration) {
         if(this.customerService.getAllCustomers().parallelStream().noneMatch(x -> x.getId().equals(registration.getIdCustomer()))) {
             throw new EntityNotFoundException("The id(" + registration.getIdCustomer() + ") of the customer does not exist");
         }
@@ -112,7 +112,6 @@ public class RegistrationLoyaltyPlanService {
         this.loyaltyPlanService.updateLoyaltyPlan(loyaltyPlan);
         this.customerService.updateRegistrationOfCustomer(registration.getIdCustomer(), registration);
         this.registrationRepository.save(registration);
-        return ResponseEntity.ok("E' andato a buon fine");
     }
 
     public void deleteRegistrationById(Integer id) {
@@ -136,6 +135,10 @@ public class RegistrationLoyaltyPlanService {
 
     public RegistrationLoyaltyPlan getRegistrationById(Integer id){
         return this.registrationRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("The registration with id " + id + " does not exist"));
+    }
+
+    public List<RegistrationLoyaltyPlan> getRegistrationsByIdLoyaltyPlan(Integer idLoyaltyPlan){
+        return this.registrationRepository.findByIdLoyaltyPlan(idLoyaltyPlan);
     }
 
     public List<RegistrationLoyaltyPlan> getRegistrationsByIdCustomer(Integer idCustomer){
