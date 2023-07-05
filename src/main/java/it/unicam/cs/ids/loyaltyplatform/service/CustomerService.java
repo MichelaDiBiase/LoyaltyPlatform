@@ -70,10 +70,6 @@ public class CustomerService {
         return this.customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("The id(" + id + ") of the Customer to get does not exist"));
     }
 
-    public List<RegistrationLoyaltyPlan> getAllRegistrationByIdCustomer(Integer id) {
-        return getCustomerById(id).getRegistrations();
-    }
-
     public List<Customer> getAllCustomers() {
         return this.customerRepository.findAll();
     }

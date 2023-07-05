@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlanMembership;
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.repository.FidelityCardRepository;
 import jakarta.persistence.EntityExistsException;
@@ -36,7 +35,7 @@ public class FidelityCardService {
         this.fidelityCardRepository.deleteById(id);
     }
 
-    public FidelityCard getFidelityCard(Integer idFidelityCard) {
+    public FidelityCard getFidelityCardById(Integer idFidelityCard) {
         return this.fidelityCardRepository.findById(idFidelityCard).orElseThrow(() -> new EntityNotFoundException("The id(" + idFidelityCard + ") of the Fidelity Card to get does not exist"));
     }
 
@@ -44,7 +43,7 @@ public class FidelityCardService {
         return this.fidelityCardRepository.findByIdCustomer(this.customerService.getCustomerById(idCustomer).getId()).orElseThrow(() -> new EntityNotFoundException("The Customer (id: " + idCustomer + ") has no Fidelity Card"));
     }
 
-    public List<FidelityCard> getAllCustomersWithFidelityCard() {
+    public List<FidelityCard> getAllFidelityCards() {
         return this.fidelityCardRepository.findAll();
     }
 

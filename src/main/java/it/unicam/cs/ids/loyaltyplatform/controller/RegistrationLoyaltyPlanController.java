@@ -31,9 +31,9 @@ public class RegistrationLoyaltyPlanController {
         return this.registrationService.getRegistrationById(id);
     }
 
-    @GetMapping(value = "/getRegistrationByIdCustomer/{idCustomer}")
-    public List<RegistrationLoyaltyPlan> getRegistrationByIdCustomer(@PathVariable Integer idCustomer){
-        return this.registrationService.getRegistrationByIdCustomer(idCustomer);
+    @GetMapping(value = "/getRegistrationsByIdCustomer/{idCustomer}")
+    public List<RegistrationLoyaltyPlan> getRegistrationsByIdCustomer(@PathVariable Integer idCustomer){
+        return this.registrationService.getRegistrationsByIdCustomer(idCustomer);
     }
 
     @GetMapping(value = "/getAllRegistrations")

@@ -11,7 +11,8 @@ public class RegistrationLoyaltyPlanMembership extends RegistrationLoyaltyPlan {
 
     @JoinColumn(name = "idFidelityCard")
     @OneToOne(cascade = CascadeType.ALL)
-    FidelityCard fidelityCard;
+    private FidelityCard fidelityCard;
+
     public RegistrationLoyaltyPlanMembership(Integer idCustomer, Integer idLoyaltyPlan) {
         super(idCustomer, idLoyaltyPlan);
     }

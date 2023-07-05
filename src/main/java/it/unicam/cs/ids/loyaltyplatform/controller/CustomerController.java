@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.service.CustomerService;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.service.RegistrationLoyaltyPlanService;
@@ -47,6 +48,11 @@ public class CustomerController {
     @GetMapping(value = "/getCustomerById/{id}")
     public Customer getCustomerById(@PathVariable Integer id) {
         return this.customerService.getCustomerById(id);
+    }
+
+    @GetMapping(value = "/getRegistrationsByIdCustomer/{id}")
+    public List<RegistrationLoyaltyPlan> getRegistrationsByIdCustomer(@PathVariable Integer id) {
+        return this.registrationService.getRegistrationsByIdCustomer(id);
     }
 
     @GetMapping(value = "/getAllCustomers")

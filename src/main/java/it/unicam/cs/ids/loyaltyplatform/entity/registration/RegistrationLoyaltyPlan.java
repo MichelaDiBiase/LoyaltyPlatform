@@ -26,8 +26,7 @@ public abstract class RegistrationLoyaltyPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true,
-            nullable = false)
+    @Column(nullable = false)
     private Integer idCustomer;
     @Column(nullable = false)
     private Integer idLoyaltyPlan;

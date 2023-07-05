@@ -21,14 +21,14 @@ public class FidelityCardController {
         this.fidelityCardService.addFidelityCard(fidelityCard);
     }
 
-    @DeleteMapping(value = "/deleteFidelityCardFromCustomerById/{idCustomer}")
+    @DeleteMapping(value = "/deleteFidelityCardById/{id}")
     public void deleteFidelityCardById(@PathVariable Integer id) {
         this.fidelityCardService.deleteFidelityCardById(id);
     }
 
-    @GetMapping(value = "/getFidelityCard/{idFidelityCard}")
-    public FidelityCard getFidelityCard(@PathVariable Integer idFidelityCard) {
-        return this.fidelityCardService.getFidelityCard(idFidelityCard);
+    @GetMapping(value = "/getFidelityCardById/{idFidelityCard}")
+    public FidelityCard getFidelityCardById(@PathVariable Integer idFidelityCard) {
+        return this.fidelityCardService.getFidelityCardById(idFidelityCard);
     }
 
     @GetMapping(value = "/getFidelityCardByIdCustomer/{idCustomer}")
@@ -36,9 +36,9 @@ public class FidelityCardController {
         return this.fidelityCardService.getFidelityCardByIdCustomer(idCustomer);
     }
 
-    @GetMapping(value = "/getAllCustomersWithFidelityCard")
-    public List<FidelityCard> getAllCustomersWithFidelityCard() {
-        return this.fidelityCardService.getAllCustomersWithFidelityCard();
+    @GetMapping(value = "/getAllFidelityCards")
+    public List<FidelityCard> getAllFidelityCards() {
+        return this.fidelityCardService.getAllFidelityCards();
     }
 
 }
