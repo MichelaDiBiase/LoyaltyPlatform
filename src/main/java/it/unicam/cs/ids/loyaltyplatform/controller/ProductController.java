@@ -29,8 +29,8 @@ public class ProductController {
         this.productService.addProduct(product);
     }
 
-    @DeleteMapping(value = "/deleteProduct")
-    public void deleteProductById(@PathVariable("id") Integer id) {
+    @DeleteMapping(value = "/deleteProduct/{id}")
+    public void deleteProductById(@PathVariable Integer id) {
 
         this.productService.deleteProductById(id);
     }
@@ -40,10 +40,10 @@ public class ProductController {
         return this.productService.getAllProduct();
     }
 
-    @PutMapping(value = "/updateProduct")
-    public void updateProduct(@RequestBody Product product) {
+    @PutMapping(value = "/updateProduct/{id}")
+    public void updateProduct(@PathVariable Integer id, @RequestBody Product product) {
 
-        this.productService.updateProduct(product);
+        this.productService.updateProduct(id, product);
     }
 
 

@@ -73,6 +73,7 @@ public class LoyaltyPlanService {
             throw new EntityNotFoundException("The id(" + id + ") of the loyaltyPlan does not exist");
         }
         LoyaltyPlan loyaltyPlan = getLoyaltyPlanById(id);
+        this.agencyService.removeLoyaltyPlanFromAgency(loyaltyPlan.getIdAgency(), loyaltyPlan);
         this.loyaltyPlanRepository.deleteById(id);
     }
 

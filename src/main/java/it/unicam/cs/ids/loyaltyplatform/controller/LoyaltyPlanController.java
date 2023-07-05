@@ -27,6 +27,11 @@ public class LoyaltyPlanController {
         this.loyaltyPlanService.deleteLoyaltyPlanById(id);
     }
 
+    @PutMapping(value = "/updatePercentageLoyaltyPlanCashback/idLoyaltyPlan/{id}/percentage/{percentage}")
+    public void updatePercentageLoyaltyPlanCashback(@PathVariable Integer id, @PathVariable Double percentage) {
+        this.loyaltyPlanService.updatePercentageLoyaltyPlanCashback(id, percentage);
+    }
+
     @GetMapping(value = "/getLoyaltyPlanByIdAgency/{idAgency}")
     public List<LoyaltyPlan> getLoyaltyPlanByIdAgency(@PathVariable Integer idAgency) {
         return this.loyaltyPlanService.getLoyaltyPlanByIdAgency(idAgency);

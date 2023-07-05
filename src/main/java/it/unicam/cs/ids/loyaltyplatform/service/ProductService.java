@@ -31,15 +31,18 @@ public class ProductService {
         this.productRepository.save(product);
     }
     public void deleteProductById(Integer id) {
-        if(productRepository.findAll().parallelStream().noneMatch(x -> x.getId().equals(id))) {
+        if(productRepository.findById(id).isPresent()) {
             throw new EntityNotFoundException("The id(" + id + ") of the product to delete does not exist");
         }
-        this.productRepository.findById(id).orElseThrow(NullPointerException::new);
+        this.productRepository.deleteById(id);
    }
 
-    public void updateProduct(Product product) {
-        this.productRepository.deleteById(product.getId());
-        addProduct(product);
+    public void updateProduct(Integer id, Product product) {
+        Product p = getProductById(id);
+        p.setName(product.getName());
+        p.setDescription(product.getDescription());
+        p.setPoints(product.getPoints());
+        this.productRepository.saveAndFlush(p);
     }
 
 }
