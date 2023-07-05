@@ -7,8 +7,10 @@ import it.unicam.cs.ids.loyaltyplatform.entity.registration.*;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Customer;
 import it.unicam.cs.ids.loyaltyplatform.repository.RegistrationLoyaltyPlanRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -90,7 +92,7 @@ public class RegistrationLoyaltyPlanService {
         return false;
     }
 
-    public void addRegistration(RegistrationLoyaltyPlan registration) {
+    public ResponseEntity<String> addRegistration(RegistrationLoyaltyPlan registration) {
         if(this.customerService.getAllCustomers().parallelStream().noneMatch(x -> x.getId().equals(registration.getIdCustomer()))) {
             throw new EntityNotFoundException("The id(" + registration.getIdCustomer() + ") of the customer does not exist");
         }
@@ -106,9 +108,11 @@ public class RegistrationLoyaltyPlanService {
             registrationLevels.setMoneySpent(0.0);
         }
         loyaltyPlan.incrementRegistrationCount();
+        registration.setDate(LocalDate.now());
         this.loyaltyPlanService.updateLoyaltyPlan(loyaltyPlan);
         this.customerService.updateRegistrationOfCustomer(registration.getIdCustomer(), registration);
         this.registrationRepository.save(registration);
+        return ResponseEntity.ok("E' andato a buon fine");
     }
 
     public void deleteRegistrationById(Integer id) {

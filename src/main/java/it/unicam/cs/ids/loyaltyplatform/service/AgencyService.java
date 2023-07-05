@@ -27,7 +27,7 @@ public class AgencyService {
     }
 
     public void updateAgency(Integer id, Agency agency) {
-        Agency ag = agencyRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Agency"));
+        Agency ag = getAgencyById(id);
         ag.setName(agency.getName());
         ag.setEmail(agency.getEmail());
         ag.setPassword(agency.getPassword());

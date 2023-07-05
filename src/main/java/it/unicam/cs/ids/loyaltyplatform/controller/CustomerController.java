@@ -29,9 +29,9 @@ public class CustomerController {
         this.customerService.deleteCustomerById(id);
     }
 
-    @PutMapping(value = "/updateCustomer")
-    public void updateCustomer(@RequestBody Customer customer) {
-        this.customerService.updateCustomer(customer);
+    @PutMapping(value = "/updateCustomer/{id}")
+    public void updateCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
+        this.customerService.updateCustomer(id, customer);
     }
 
     @PutMapping(value = "/addPointsToCustomerById/{id}/points/{points}")

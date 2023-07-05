@@ -44,8 +44,8 @@ public class CustomerService {
         this.customerRepository.deleteById(id);
     }
 
-    public void updateCustomer(Customer customer) {
-        Customer c = getCustomerById(customer.getId());
+    public void updateCustomer(Integer id, Customer customer) {
+        Customer c = getCustomerById(id);
         c.setName(customer.getName());
         c.setSurname(customer.getSurname());
         c.setGender(customer.getGender());

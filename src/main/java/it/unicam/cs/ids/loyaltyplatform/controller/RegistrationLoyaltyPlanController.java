@@ -2,12 +2,11 @@ package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.service.RegistrationLoyaltyPlanService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/registration")
 public class RegistrationLoyaltyPlanController {
     private final RegistrationLoyaltyPlanService registrationService;
