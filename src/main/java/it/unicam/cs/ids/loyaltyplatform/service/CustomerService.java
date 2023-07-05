@@ -20,7 +20,6 @@ public class CustomerService {
     public void updateRegistrationOfCustomer(Integer id, RegistrationLoyaltyPlan registration) {
         Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
         c.addRegistration(registration);
-        updateCustomer(c);
     }
 
     public void downgradeRegistrationOfCustomer(Integer id, RegistrationLoyaltyPlan registration) {

@@ -15,6 +15,7 @@ public class RegistrationLoyaltyPlanPoints extends RegistrationLoyaltyPlan {
     @JoinColumn(name = "idProduct")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Product> redeemedProducts;
+
     public RegistrationLoyaltyPlanPoints(Integer idCustomer, Integer idLoyaltyPlan) {
         super(idCustomer, idLoyaltyPlan);
         this.redeemedProducts = new ArrayList<>();

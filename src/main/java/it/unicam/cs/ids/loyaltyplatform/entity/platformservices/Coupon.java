@@ -24,6 +24,12 @@ public class Coupon {
 		this.idAgency = idAgency;
 	}
 
+	public Coupon(Double discount, Integer idAgency, Integer idCustomer) {
+		this.discount = discount;
+		this.idAgency = idAgency;
+		this.idCustomer = idCustomer;
+	}
+
 	public Coupon(Double discount, Integer idAgency) {
 		this.discount = discount;
 		this.idAgency = idAgency;

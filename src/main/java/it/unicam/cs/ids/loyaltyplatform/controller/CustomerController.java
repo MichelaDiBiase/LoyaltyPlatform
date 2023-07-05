@@ -39,10 +39,19 @@ public class CustomerController {
         this.customerService.addPointsToCustomerById(id, points);
     }
 
-    @PostMapping(value = "/redeemReward/{idProduct}/idRegistration/{idRegistration}")
+    @PutMapping(value = "/redeemReward/{idProduct}/idRegistration/{idRegistration}")
     public void redeemReward(@PathVariable Integer idProduct, @PathVariable Integer idRegistration){
        this.registrationService.redeemProduct(idProduct, idRegistration);
+    }
 
+    @PutMapping(value = "/moneySpent/money/{money}/idRegistration/{idRegistration}")
+    public void moneySpent(@PathVariable Double money, @PathVariable Integer idRegistration) {
+        this.registrationService.moneySpent(money, idRegistration);
+    }
+
+    @GetMapping(value = "/calculateCashback/money/{money}/idRegistration/{idRegistration}")
+    public Double calculateCashback(@PathVariable Double money, @PathVariable Integer idRegistration) {
+        return this.registrationService.calculateCashback(money, idRegistration);
     }
 
     @GetMapping(value = "/getCustomerById/{id}")
