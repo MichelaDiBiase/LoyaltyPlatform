@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
 
+import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Mail;
 import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.Review;
 import it.unicam.cs.ids.loyaltyplatform.repository.ReviewRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -26,13 +27,19 @@ public class ReviewService {
         this.reviewRepository.delete(review);
     }
 
-    public void updateReview(Review review) {
-        this.reviewRepository.saveAndFlush(review);
+    public void updateReview(Integer id, Review review) {
+        Review r = getReviewById(id);
+        r.setText(review.getText());
+        this.reviewRepository.saveAndFlush(r);
+    }
+
+    public Review getReviewById(Integer id) {
+        return this.reviewRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("The id(" + id + ") of the review does not exist"));
     }
 
     public List<Review> getReviewByCustomerId(Integer idCustomer) {
         if(reviewRepository.findAll().parallelStream().noneMatch(x -> x.getIdCostumer().equals(idCustomer))) {
-            throw new EntityNotFoundException("The id(" + idCustomer + ") of the id does not exist");
+            throw new EntityNotFoundException("The id(" + idCustomer + ") of the customer does not exist");
         }
         return this.reviewRepository.findAll().parallelStream().filter(x -> x.getIdCostumer() == (idCustomer)).toList();
 
@@ -56,5 +63,6 @@ public class ReviewService {
         return this.reviewRepository.findAll().parallelStream().filter(x -> x.getIdCostumer() == idCustomer && x.getIdAgency() == idAgency).toList();
     }
 
-
+    public List<Review> getAllReviews() {return this.reviewRepository.findAll();
+    }
 }

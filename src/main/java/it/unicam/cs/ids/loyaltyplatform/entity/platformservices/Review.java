@@ -9,13 +9,13 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(nullable = false)
-	private String assessment;
+	private String text;
 	@Column(nullable = false)
 	private Integer idCostumer,idAgency;
 
-	public Review (String assessment, Integer idCostumer, Integer idAgency){
+	public Review (String text, Integer idCostumer, Integer idAgency){
 
-		this.assessment=assessment;
+		this.text =text;
 		this.idCostumer=idCostumer;
 		this.idAgency=idAgency;
 	}
@@ -24,10 +24,13 @@ public class Review {
 
 	}
 
+	public Integer getId() {
+		return id;
+	}
 
-	public String getAssessment() {
+	public String getText() {
 
-		return assessment;
+		return text;
 	}
 	public Integer getIdCostumer() {
 
@@ -38,8 +41,8 @@ public class Review {
 		return idAgency;
 	}
 
-	public void setAssessment(String assessment) {
-		this.assessment = assessment;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public void setIdCostumer(Integer idCostumer) {
