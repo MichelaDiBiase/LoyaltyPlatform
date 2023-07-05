@@ -69,11 +69,6 @@ public class LoyaltyPlanService {
         this.loyaltyPlanRepository.save(loyaltyPlan);
     }
     public void deleteLoyaltyPlanById(Integer id) {
-        if (loyaltyPlanRepository.findAll().parallelStream().noneMatch(x -> x.getId().equals(id))) {
-            throw new EntityNotFoundException("The id(" + id + ") of the loyaltyPlan does not exist");
-        }
-        LoyaltyPlan loyaltyPlan = getLoyaltyPlanById(id);
-        this.agencyService.removeLoyaltyPlanFromAgency(loyaltyPlan.getIdAgency(), loyaltyPlan);
         this.loyaltyPlanRepository.deleteById(id);
     }
 
@@ -81,6 +76,15 @@ public class LoyaltyPlanService {
         LoyaltyPlan l = getLoyaltyPlanById(loyaltyPlan.getId());
         l.setRegistrationCount(loyaltyPlan.getRegistrationCount());
         this.loyaltyPlanRepository.saveAndFlush(l);
+    }
+
+    public void updatePercentageLoyaltyPlanCashback(Integer id, Double percentage) {
+        LoyaltyPlan loyaltyPlan = getLoyaltyPlanById(id);
+        if(!(loyaltyPlan instanceof LoyaltyPlanCashback loyaltyPlanCashback)) {
+            throw new IllegalArgumentException("The loyalty plan to update is not a cashback type");
+        }
+        loyaltyPlanCashback.setPercentage(percentage);
+        this.loyaltyPlanRepository.saveAndFlush(loyaltyPlanCashback);
     }
 
     public List<LoyaltyPlan> getAllLoyaltyPlan(){
@@ -95,9 +99,6 @@ public class LoyaltyPlanService {
     }
 
     public LoyaltyPlan getLoyaltyPlanById(Integer id){
-        if (loyaltyPlanRepository.findAll().parallelStream().noneMatch(x -> x.getId().equals(id))) {
-            throw new EntityNotFoundException("The id(" + id + ") of the loyaltyPlan does not exist");
-        }
         return this.loyaltyPlanRepository.findById(id).orElseThrow(() ->new EntityNotFoundException("The id "+id+" does not corresponds to any  LoyaltyPlanById "));
     }
 
