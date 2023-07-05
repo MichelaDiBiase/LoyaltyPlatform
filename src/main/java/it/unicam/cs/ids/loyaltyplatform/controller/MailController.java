@@ -43,7 +43,7 @@ public class MailController {
         return this.mailService.getMailByIdCustomerAndIdAgency(idCustomer,idAgency);
     }
 
-    @GetMapping(value = "/getMailByCustomerIdAndAgencyId")
+    @GetMapping(value = "/getAllMails")
     public List<Mail> getAllMails() {
         return this.mailService.getAllMails();
     }
