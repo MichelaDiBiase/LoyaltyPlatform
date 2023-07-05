@@ -29,8 +29,8 @@ public class CustomerController {
     }
 
     @PutMapping(value = "/updateCustomer")
-    public void updateCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
-        this.customerService.updateCustomer(id, customer);
+    public void updateCustomer(@RequestBody Customer customer) {
+        this.customerService.updateCustomer(customer);
     }
 
     @PutMapping(value = "/addPointsToCustomerById/{id}/points/{points}")

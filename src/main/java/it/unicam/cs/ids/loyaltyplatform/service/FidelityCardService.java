@@ -26,11 +26,13 @@ public class FidelityCardService {
         if(this.customerService.getAllCustomers().parallelStream().noneMatch(x -> x.getId().equals(fidelityCard.getIdCustomer()))) {
             throw new EntityNotFoundException("Customer (id: " + fidelityCard.getIdCustomer() + ") does not exist");
         }
-        this.customerService.getCustomerById(fidelityCard.getIdCustomer()).setFidelityCard(fidelityCard);
         this.fidelityCardRepository.save(fidelityCard);
     }
 
     public void deleteFidelityCardById(Integer id) {
+        if(this.fidelityCardRepository.findById(id).isEmpty()) {
+            throw new EntityNotFoundException("The id(" + id + ") of the Fidelity card does not exist");
+        }
         this.fidelityCardRepository.deleteById(id);
     }
 

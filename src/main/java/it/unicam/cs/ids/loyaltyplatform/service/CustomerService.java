@@ -20,7 +20,7 @@ public class CustomerService {
     public void updateRegistrationOfCustomer(Integer id, RegistrationLoyaltyPlan registration) {
         Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
         c.addRegistration(registration);
-        this.customerRepository.saveAndFlush(c);
+        updateCustomer(c);
     }
 
     public void downgradeRegistrationOfCustomer(Integer id, RegistrationLoyaltyPlan registration) {
@@ -45,8 +45,8 @@ public class CustomerService {
         this.customerRepository.deleteById(id);
     }
 
-    public void updateCustomer(Integer id, Customer customer) {
-        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
+    public void updateCustomer(Customer customer) {
+        Customer c = getCustomerById(customer.getId());
         c.setName(customer.getName());
         c.setSurname(customer.getSurname());
         c.setGender(customer.getGender());

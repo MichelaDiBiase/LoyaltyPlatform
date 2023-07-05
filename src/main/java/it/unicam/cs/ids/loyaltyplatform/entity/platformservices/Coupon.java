@@ -29,6 +29,10 @@ public class Coupon {
 		this.idAgency = idAgency;
 	}
 
+	public Coupon(Double discount) {
+		this.discount = discount;
+	}
+
 	public Integer getCode() {
 		return code;
 	}

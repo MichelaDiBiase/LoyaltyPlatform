@@ -30,12 +30,9 @@ public class Customer implements IUser {
 	private String password;
 	private Integer points;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idLoyaltyPlan")
+	@JoinColumn(name = "idRegistrationPlan")
 	private List<RegistrationLoyaltyPlan> registrations;
 	private Boolean premium;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idFidelityCard")
-	private FidelityCard fidelityCard;
 
 	public Customer(String name, String surname, String email, String password, Boolean gender) {
 		this.name = name;
@@ -68,6 +65,10 @@ public class Customer implements IUser {
 
 	public void sumPoints(Integer points) {
 		this.points += points;
+	}
+
+	public void subtractPoints(Integer points) {
+		this.points -= points;
 	}
 
 	public Integer getId() {
@@ -108,10 +109,6 @@ public class Customer implements IUser {
 		return premium;
 	}
 
-	public FidelityCard getFidelityCard() {
-		return fidelityCard;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -142,16 +139,11 @@ public class Customer implements IUser {
 		this.gender = gender;
 	}
 
-
 	public void setRegistrations(List<RegistrationLoyaltyPlan> registrations) {
 		this.registrations = registrations;
 	}
 
 	public void setPremium(Boolean premium) {
 		this.premium = premium;
-	}
-
-	public void setFidelityCard(FidelityCard fidelityCard) {
-		this.fidelityCard = fidelityCard;
 	}
 }
