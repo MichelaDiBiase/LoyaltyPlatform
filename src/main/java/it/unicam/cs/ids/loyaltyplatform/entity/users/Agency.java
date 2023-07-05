@@ -38,23 +38,6 @@ public class Agency implements IUser {
 		loyaltyPlans.add(loyaltyPlan);
 	}
 
-	public void removeLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
-		for(LoyaltyPlan lp : loyaltyPlans) {
-			if(lp.getId().equals(loyaltyPlan.getId())) {
-				loyaltyPlans.remove(loyaltyPlan);
-			}
-		}
-	}
-
-	public boolean checkLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
-		for(LoyaltyPlan r : loyaltyPlans) {
-			if(r.getId().equals(loyaltyPlan.getId())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public Integer getId() {
 		return id;
 	}

@@ -21,14 +21,6 @@ public class AgencyService {
         a.addLoyaltyPlan(loyaltyPlan);
     }
 
-    public void removeLoyaltyPlanFromAgency(Integer id, LoyaltyPlan loyaltyPlan) {
-        Agency a = getAgencyById(id);
-        if(!a.checkLoyaltyPlan(loyaltyPlan)) {
-            throw new EntityNotFoundException("The LoyaltyPlan(id:" + loyaltyPlan.getId() + ") to remove from agency(id:" + id + ") does not exist");
-        }
-        a.removeLoyaltyPlan(loyaltyPlan);
-    }
-
     public void addAgency(Agency agency) {
         this.agencyRepository.save(agency);
     }

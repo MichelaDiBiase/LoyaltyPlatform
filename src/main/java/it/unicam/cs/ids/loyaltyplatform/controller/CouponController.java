@@ -47,6 +47,11 @@ public class CouponController {
         return this.couponService.getCouponsByIdAgency(idAgency);
     }
 
+    @GetMapping(value = "/getCouponsByIdCustomerAndIdAgency/idCustomer/{idCustomer}/idAgency/{idAgency}")
+    public List<Coupon> getCouponsByIdCustomerAndIdAgency(@PathVariable Integer idCustomer, @PathVariable Integer idAgency) {
+        return this.couponService.getCouponsByIdCustomerAndIdAgency(idCustomer, idAgency);
+    }
+
     @GetMapping(value = "/getAllCoupons")
     public List<Coupon> getAllCoupons() {
         return this.couponService.getAllCoupons();

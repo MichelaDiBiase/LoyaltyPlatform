@@ -47,6 +47,10 @@ public class CouponService {
         return this.couponRepository.findByIdAgency(idAgency);
     }
 
+    public List<Coupon> getCouponsByIdCustomerAndIdAgency(Integer idCustomer, Integer idAgency) {
+        return this.couponRepository.findByIdCustomerAndIdAgency(idCustomer, idAgency);
+    }
+
     public List<Coupon> getAllCoupons() {
         return this.couponRepository.findAll();
     }

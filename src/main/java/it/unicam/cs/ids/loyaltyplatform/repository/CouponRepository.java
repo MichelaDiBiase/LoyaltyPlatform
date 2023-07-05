@@ -10,4 +10,5 @@ import java.util.List;
 public interface CouponRepository extends JpaRepository<Coupon, Integer> {
     List<Coupon> findByIdCustomer(Integer idCustomer);
     List<Coupon> findByIdAgency(Integer idAgency);
+    List<Coupon> findByIdCustomerAndIdAgency(Integer idCustomer, Integer idAgency);
 }
