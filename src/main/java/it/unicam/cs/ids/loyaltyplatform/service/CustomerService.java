@@ -18,17 +18,16 @@ public class CustomerService {
     }
 
     public void updateRegistrationOfCustomer(Integer id, RegistrationLoyaltyPlan registration) {
-        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
+        Customer c = getCustomerById(id);
         c.addRegistration(registration);
     }
 
     public void downgradeRegistrationOfCustomer(Integer id, RegistrationLoyaltyPlan registration) {
-        Customer c = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("This id(" + id + ") does not corresponds to any Customer"));
+        Customer c = getCustomerById(id);
         if(!c.checkRegistration(registration)) {
-            throw new EntityNotFoundException("The LoyaltyPlan(id:" + registration.getId() + ") to remove from customer(id:" + id + ") does not exist");
+            throw new EntityNotFoundException("The RegistrationLoyaltyPlan(id:" + registration.getId() + ") to remove from customer(id:" + id + ") does not exist");
         }
         c.removeRegistration(registration);
-        this.customerRepository.saveAndFlush(c);
     }
 
     public void addCustomer(Customer customer) {

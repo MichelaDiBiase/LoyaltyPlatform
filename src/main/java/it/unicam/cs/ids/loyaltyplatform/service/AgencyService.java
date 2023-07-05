@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.service;
 
+import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.entity.users.Agency;
 import it.unicam.cs.ids.loyaltyplatform.repository.AgencyRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,6 +14,19 @@ public class AgencyService {
 
     public AgencyService(AgencyRepository agencyRepository) {
         this.agencyRepository = agencyRepository;
+    }
+
+    public void addLoyaltyPlanToAgency(Integer id, LoyaltyPlan loyaltyPlan) {
+        Agency a = getAgencyById(id);
+        a.addLoyaltyPlan(loyaltyPlan);
+    }
+
+    public void removeLoyaltyPlanFromAgency(Integer id, LoyaltyPlan loyaltyPlan) {
+        Agency a = getAgencyById(id);
+        if(!a.checkLoyaltyPlan(loyaltyPlan)) {
+            throw new EntityNotFoundException("The LoyaltyPlan(id:" + loyaltyPlan.getId() + ") to remove from agency(id:" + id + ") does not exist");
+        }
+        a.removeLoyaltyPlan(loyaltyPlan);
     }
 
     public void addAgency(Agency agency) {

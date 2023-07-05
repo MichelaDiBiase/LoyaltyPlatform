@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
 import it.unicam.cs.ids.loyaltyplatform.entity.loyaltyplan.LoyaltyPlan;
+import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,15 @@ public class Agency implements IUser {
 				loyaltyPlans.remove(loyaltyPlan);
 			}
 		}
+	}
+
+	public boolean checkLoyaltyPlan(LoyaltyPlan loyaltyPlan) {
+		for(LoyaltyPlan r : loyaltyPlans) {
+			if(r.getId().equals(loyaltyPlan.getId())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Integer getId() {
