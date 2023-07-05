@@ -11,12 +11,12 @@ public class Review {
 	@Column(nullable = false)
 	private String text;
 	@Column(nullable = false)
-	private Integer idCostumer,idAgency;
+	private Integer idCustomer,idAgency;
 
-	public Review (String text, Integer idCostumer, Integer idAgency){
+	public Review (String text, Integer idCustomer, Integer idAgency){
 
 		this.text =text;
-		this.idCostumer=idCostumer;
+		this.idCustomer=idCustomer;
 		this.idAgency=idAgency;
 	}
 
@@ -32,9 +32,9 @@ public class Review {
 
 		return text;
 	}
-	public Integer getIdCostumer() {
+	public Integer getIdCustomer() {
 
-		return idCostumer;
+		return idCustomer;
 	}
 	public Integer getIdAgency() {
 
@@ -45,8 +45,8 @@ public class Review {
 		this.text = text;
 	}
 
-	public void setIdCostumer(Integer idCostumer) {
-		this.idCostumer = idCostumer;
+	public void setIdCostumer(Integer idCustomer) {
+		this.idCustomer = idCustomer;
 	}
 
 	public void setIdAgency(Integer idAgency) {
