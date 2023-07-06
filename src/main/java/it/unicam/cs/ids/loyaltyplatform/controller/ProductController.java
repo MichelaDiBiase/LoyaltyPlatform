@@ -18,7 +18,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/getProductById/{id}")
-    public Product getProductById(@PathVariable("id") Integer id) {
+    public Product getProductById(@PathVariable Integer id) {
 
         return this.productService.getProductById(id);
     }
@@ -29,7 +29,7 @@ public class ProductController {
         this.productService.addProduct(product);
     }
 
-    @DeleteMapping(value = "/deleteProduct/{id}")
+    @DeleteMapping(value = "/deleteProductById/{id}")
     public void deleteProductById(@PathVariable Integer id) {
 
         this.productService.deleteProductById(id);

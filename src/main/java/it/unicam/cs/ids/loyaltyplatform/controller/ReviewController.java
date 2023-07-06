@@ -23,7 +23,7 @@ public class ReviewController {
         this.reviewService.addReview(review);
     }
 
-    @DeleteMapping(value = "/deleteReview/{id}")
+    @DeleteMapping(value = "/deleteReviewById/{id}")
     public void deleteReviewById(@PathVariable Integer id) {
 
         this.reviewService.deleteReviewById(id);
@@ -33,17 +33,23 @@ public class ReviewController {
 
         this.reviewService.updateReview(id, review);
     }
-    @GetMapping(value = "/getReviewByCustomerId/{idCustomer}")
+
+    @GetMapping(value = "/getReviewById/{id}")
+    public Review getReviewById(@PathVariable Integer id) {
+        return this.reviewService.getReviewById(id);
+    }
+
+    @GetMapping(value = "/getReviewByIdCustomer/{idCustomer}")
     public List<Review> getReviewByIdCustomer(@PathVariable Integer idCustomer) {
         return this.reviewService.getReviewByIdCustomer(idCustomer);
     }
 
-    @GetMapping(value = "/getReviewByAgencyId/{idAgency}")
+    @GetMapping(value = "/getReviewByIdAgency/{idAgency}")
     public List<Review> getReviewByIdAgency(@PathVariable Integer idAgency) {
         return this.reviewService.getReviewByIdAgency(idAgency);
     }
 
-    @GetMapping(value = "/getReviewByCustomerIdAndAgencyId/{idCustomer}&{idAgency}")
+    @GetMapping(value = "/getReviewByIdCustomerAndIdAgency/{idCustomer}&{idAgency}")
     public List<Review> getReviewByIdCustomerAndIdAgency(@PathVariable Integer idCustomer, @PathVariable Integer idAgency) {
         return this.reviewService.getReviewByIdCustomerAndIdAgency(idCustomer,idAgency);
     }
