@@ -13,8 +13,8 @@ public class CouponController {
 
     private final CouponService couponService;
 
-    public CouponController(CouponService couponRepository) {
-        this.couponService = couponRepository;
+    public CouponController(CouponService couponService) {
+        this.couponService = couponService;
     }
 
     @PostMapping(value = "/addCoupon")

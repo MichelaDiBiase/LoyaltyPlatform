@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyplatform.entity.users;
 
-import it.unicam.cs.ids.loyaltyplatform.entity.platformservices.FidelityCard;
 import it.unicam.cs.ids.loyaltyplatform.entity.registration.RegistrationLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.models.IUser;
 import jakarta.persistence.*;
